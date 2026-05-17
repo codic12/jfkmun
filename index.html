@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JFK Model United Nations | Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="conferences.html">Conferences</a></li>
+      <li><a href="officers.html">Officers</a></li>
+      <li><a href="summer.html">Summer</a></li>
+      <li><a href="signup.html" class="nav-cta">Join</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero" style="padding: 0;">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-title reveal">JFK Model United Nations</h1>
+    <p class="hero-sub reveal">Developing the next generation of global leaders through diplomacy, debate, and international collaboration.</p>
+    <div class="hero-actions reveal">
+      <a href="signup.html" class="btn btn-primary">Join the Club</a>
+      <a href="summer.html" class="btn btn-outline">Summer Program</a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION PREVIEW -->
+<section id="mission">
+  <div class="section-wrap">
+    <div class="grid-2">
+      <div class="reveal">
+        <p class="section-label">Our Mission</p>
+        <h2 class="section-title">Diplomacy in Action</h2>
+        <div class="divider"></div>
+        <p class="section-body">Model United Nations (MUN) is an academic simulation of the United Nations where students represent different countries and debate global issues. At JFK MUN, we strive to foster a community of critical thinkers and eloquent speakers.</p>
+        <br>
+        <p class="section-body">Whether you are interested in international relations, public speaking, or simply want to meet new people, JFK MUN offers a platform for everyone to grow.</p>
+        <br>
+        <a href="signup.html" class="btn btn-ghost">Get Involved</a>
+      </div>
+      <div class="reveal" style="background: var(--light-gray); aspect-ratio: 4/3; border-radius: 2px; overflow: hidden;">
+        <!-- Placeholder for a club photo -->
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2064&auto=format&fit=crop" alt="JFK MUN Students" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>JFK Model United Nations</h3>
+      <p>John F. Kennedy High School<br>A student-run organization dedicated to global education and competitive diplomacy.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="conferences.html">Conferences</a></li>
+        <li><a href="officers.html">Officers</a></li>
+        <li><a href="summer.html">Summer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Training Slides</a></li>
+        <li><a href="#">Position Paper Guide</a></li>
+        <li><a href="https://bestdelegate.com/resources/" target="_blank">Best Delegate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:jfkmun@fremont.k12.ca.us">Email Officers</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 JFK Model United Nations</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // Trigger elements already in view on load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      reveals.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('visible');
+      });
+    }, 100);
+  });
+</script>
+</body>
+</html>

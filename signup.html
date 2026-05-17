@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Us | JFK Model United Nations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="conferences.html">Conferences</a></li>
+      <li><a href="officers.html">Officers</a></li>
+      <li><a href="summer.html">Summer</a></li>
+      <li><a href="signup.html" class="nav-cta active">Join</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" style="height: 40vh; min-height: 300px; padding: 0;">
+  <div class="hero-bg" style="filter: blur(4px) brightness(0.5);"></div>
+  <div class="hero-content">
+    <h1 class="hero-title reveal">Join JFK MUN</h1>
+    <p class="hero-sub reveal">Start your journey into the world of international relations.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-wrap">
+    <div class="grid-2">
+      <div class="reveal">
+        <p class="section-label">Get Involved</p>
+        <h2 class="section-title">Membership & Sign-Ups</h2>
+        <div class="divider"></div>
+        <p class="section-body">We welcome new members at any time during the school year. Whether you want to compete at major conferences or just learn more about global issues, there's a place for you at JFK MUN.</p>
+        <br>
+        <p class="section-body">Please fill out the interest form, and an officer will get back to you with information about our next meeting and training sessions.</p>
+      </div>
+
+      <div class="reveal">
+        <form class="signup-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="grade">Grade</label>
+              <select id="grade">
+                <option value="">Select Grade</option>
+                <option>9th</option>
+                <option>10th</option>
+                <option>11th</option>
+                <option>12th</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="email">School Email</label>
+              <input type="email" id="email" placeholder="@fremont.k12.ca.us">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="interest">Interest Area</label>
+            <select id="interest">
+              <option value="">What interests you most?</option>
+              <option>Joining the Club</option>
+              <option>Conference Participation</option>
+              <option>Training & Workshops</option>
+              <option>General Information</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Questions or Comments</label>
+            <textarea id="message" placeholder="Anything else you'd like us to know?"></textarea>
+          </div>
+          <button type="button" class="btn btn-blue" onclick="this.textContent='Submitted!'; this.disabled=true;">Submit Interest Form</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>JFK Model United Nations</h3>
+      <p>John F. Kennedy High School<br>Fremont, California<br>A student-run organization dedicated to global education and competitive diplomacy.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="conferences.html">Conferences</a></li>
+        <li><a href="officers.html">Officers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Training Slides</a></li>
+        <li><a href="#">Position Paper Guide</a></li>
+        <li><a href="https://bestdelegate.com/resources/" target="_blank">Best Delegate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:jfkmun@fremont.k12.ca.us">Email Officers</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 JFK Model United Nations</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      reveals.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('visible');
+      });
+    }, 100);
+  });
+</script>
+</body>
+</html>

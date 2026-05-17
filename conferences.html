@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conferences | JFK Model United Nations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="conferences.html" class="active">Conferences</a></li>
+      <li><a href="officers.html">Officers</a></li>
+      <li><a href="summer.html">Summer</a></li>
+      <li><a href="signup.html" class="nav-cta">Join</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" style="height: 40vh; min-height: 300px; padding: 0;">
+  <div class="hero-bg" style="filter: blur(4px) brightness(0.5);"></div>
+  <div class="hero-content">
+    <h1 class="hero-title reveal">Conferences</h1>
+    <p class="hero-sub reveal">Our journey through international debate and competitive diplomacy.</p>
+  </div>
+</section>
+
+<section>
+  <div class="section-wrap">
+    <div class="reveal">
+      <p class="section-label">Schedule</p>
+      <h2 class="section-title">2025 - 2026 Season</h2>
+      <div class="divider"></div>
+      <p class="section-body">Each year, our club travels to some of the most prestigious conferences in the country. From Berkeley to Washington D.C., our delegates represent JFK with pride.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Conference</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PACIFICUM 2025</strong><br><small>San Francisco Model UN</small></td>
+            <td>San Francisco, CA</td>
+            <td>Oct 2025</td>
+            <td>Registration Open</td>
+          </tr>
+          <tr>
+            <td><strong>SCVMUN 2025</strong><br><small>Santa Clara Valley</small></td>
+            <td>San Jose, CA</td>
+            <td>Nov 2025</td>
+            <td>Upcoming</td>
+          </tr>
+          <tr>
+            <td><strong>NAIMUN LXIII</strong><br><small>Georgetown University</small></td>
+            <td>Washington, D.C.</td>
+            <td>Jan 2026</td>
+            <td>Upcoming</td>
+          </tr>
+          <tr>
+            <td><strong>SFMUN 2026</strong><br><small>San Francisco Model UN</small></td>
+            <td>San Francisco, CA</td>
+            <td>Feb 2026</td>
+            <td>Upcoming</td>
+          </tr>
+          <tr>
+            <td><strong>BMUN 74</strong><br><small>UC Berkeley</small></td>
+            <td>Berkeley, CA</td>
+            <td>March 2026</td>
+            <td>Upcoming</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>JFK Model United Nations</h3>
+      <p>John F. Kennedy High School<br>Fremont, California<br>A student-run organization dedicated to global education and competitive diplomacy.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="conferences.html">Conferences</a></li>
+        <li><a href="officers.html">Officers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Training Slides</a></li>
+        <li><a href="#">Position Paper Guide</a></li>
+        <li><a href="https://bestdelegate.com/resources/" target="_blank">Best Delegate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:jfkmun@fremont.k12.ca.us">Email Officers</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 JFK Model United Nations</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      reveals.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('visible');
+      });
+    }, 100);
+  });
+</script>
+</body>
+</html>
