@@ -23,6 +23,11 @@
                         height="64"
                     />
                 </a>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <ul class="nav-links">
                     <li><a href="/index">Home</a></li>
                     <li><a href="/conferences">Conferences</a></li>
@@ -191,6 +196,23 @@
         </footer>
 
         <script>
+            // Hamburger Menu
+            const navToggle = document.querySelector(".nav-toggle");
+            const navLinks = document.querySelector(".nav-links");
+
+            navToggle.addEventListener("click", () => {
+                navToggle.classList.toggle("open");
+                navLinks.classList.toggle("active");
+            });
+
+            // Close menu when link is clicked
+            document.querySelectorAll(".nav-links a").forEach((n) =>
+                n.addEventListener("click", () => {
+                    navToggle.classList.remove("open");
+                    navLinks.classList.remove("active");
+                }),
+            );
+
             const reveals = document.querySelectorAll(".reveal");
             const io = new IntersectionObserver(
                 (entries) => {
