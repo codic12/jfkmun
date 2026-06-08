@@ -353,6 +353,17 @@ tbody td {
     color: var(--text);
     vertical-align: middle;
 }
+tbody td ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 8px 0;
+}
+tbody td li {
+    margin-bottom: 4px;
+}
+tbody td li:last-child {
+    margin-bottom: 0;
+}
 
 /* ── CARDS ── */
 .card-grid {
