@@ -41,7 +41,7 @@ nav {
     z-index: 100;
     background: var(--white);
     border-bottom: 1px solid var(--light-gray);
-    height: 80px;
+    height: 64px;
     display: flex;
     align-items: center;
 }
@@ -49,7 +49,7 @@ nav {
     max-width: 1180px;
     margin: 0 auto;
     width: 100%;
-    padding: 0 32px;
+    padding: 0 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,6 +60,10 @@ nav {
     justify-content: center;
     text-decoration: none;
     z-index: 102;
+}
+.nav-logo img {
+    width: 48px;
+    height: 48px;
 }
 .nav-logo span {
     color: var(--text);
@@ -116,6 +120,7 @@ nav {
     border-radius: 2px;
     margin-left: 8px;
     transition: background 0.15s !important;
+    border-radius: 10px;
 }
 .nav-cta:hover {
     background: var(--blue-mid) !important;
@@ -124,7 +129,7 @@ nav {
 
 /* ── HERO ── */
 .hero {
-    margin-top: 80px;
+    margin-top: 64px;
     position: relative;
     height: 60vh;
     min-height: 400px;
@@ -186,14 +191,14 @@ nav {
 /* ── BUTTONS ── */
 .btn {
     display: inline-block;
-    padding: 13px 30px;
+    padding: 12px 24px;
     font-family: var(--serif-body);
     font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.2s ease;
+    border-radius: 4px;
+    transition: background 0.2s ease;
     cursor: pointer;
 }
 .btn-primary {
@@ -202,7 +207,6 @@ nav {
 }
 .btn-primary:hover {
     background: var(--off-white);
-    transform: translateY(-2px);
 }
 .btn-outline {
     border: 1px solid rgba(255, 255, 255, 0.6);
@@ -211,7 +215,6 @@ nav {
 .btn-outline:hover {
     border-color: var(--white);
     background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
 }
 .btn-blue {
     background: var(--blue-dark);
@@ -219,7 +222,6 @@ nav {
 }
 .btn-blue:hover {
     background: var(--blue-mid);
-    transform: translateY(-2px);
 }
 .btn-ghost {
     border: 1px solid var(--blue-dark);
@@ -228,7 +230,6 @@ nav {
 .btn-ghost:hover {
     background: var(--blue-dark);
     color: var(--white);
-    transform: translateY(-2px);
 }
 
 /* ── STAT BAR ── */
@@ -448,18 +449,6 @@ footer {
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* ── REVEAL ANIMATION ── */
-.reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-        opacity 0.6s ease,
-        transform 0.6s ease;
-}
-.reveal.visible {
-    opacity: 1;
-    transform: none;
-}
 
 /* ── OFFICERS ── */
 .officer-photo {
@@ -535,6 +524,56 @@ footer {
 .summer-details li span {
     font-weight: 600;
     color: var(--text);
+}
+
+/* ── CAROUSEL (Swiper) ── */
+.swiper {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid var(--light-gray);
+    overflow: hidden;
+    position: relative;
+}
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+}
+.swiper-button-next,
+.swiper-button-prev {
+    color: white;
+    background: rgba(0, 0, 0, 1);
+    width: 80px;
+    height: 80px;
+    --swiper-navigation-size: 30px;
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: bold;
+}
+.swiper-button-next {
+    right: 10px;
+}
+.swiper-button-prev {
+    left: 10px;
+}
+.swiper-pagination {
+    bottom: 15px !important;
+}
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+}
+.swiper-pagination-bullet-active {
+    background: var(--white);
 }
 
 /* ── SIGNUP FORM ── */
