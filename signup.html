@@ -57,88 +57,25 @@
 
         <section>
             <div class="section-wrap">
-                <div class="grid-2">
-                    <div class="reveal">
-                        <p class="section-label">Get Involved</p>
-                        <h2 class="section-title">Membership & Sign-Ups</h2>
-                        <div class="divider"></div>
-                        <p class="section-body">
-                            We welcome new members at any time during the school
-                            year. Whether you want to compete at major
-                            conferences or just learn more about global issues,
-                            there's a place for you at JFK MUN.
-                        </p>
-                        <br />
-                        <p class="section-body">
-                            Please fill out the interest form, and an officer
-                            will get back to you with information about our next
-                            meeting and training sessions.
-                        </p>
+                <div class="reveal" style="text-align: center; max-width: 650px; margin: 0 auto; padding: 60px 20px;">
+                    <p class="section-label">Get Involved</p>
+                    <h2 class="section-title" style="margin-bottom: 16px;">Membership & Sign-Ups</h2>
+                    <div class="divider" style="margin: 0 auto 32px auto;"></div>
+                    <p class="section-body" style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 24px;">
+                        We welcome new members at any time during the school year. Whether you want to compete at major conferences or just learn more about global issues, there's a place for you at JFK Model UN.
+                    </p>
+                    <p class="section-body" style="font-size: 1.15rem; line-height: 1.6; margin-bottom: 40px; color: var(--text);">
+                        To sign up, please email our officers directly at:<br />
+                        <a href="mailto:jfktitansmodelunitednations@gmail.com" style="color: var(--blue); font-weight: 600; text-decoration: underline; font-size: 1.3rem;">jfktitansmodelunitednations@gmail.com</a>
+                    </p>
+                    <div style="margin-top: 24px;">
+                        <a href="mailto:jfktitansmodelunitednations@gmail.com" class="btn btn-blue" style="display: inline-block; padding: 14px 32px; font-size: 1.1rem; text-decoration: none;">
+                            Open Email Client
+                        </a>
                     </div>
-
-                    <div class="reveal">
-                        <form class="signup-form">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    placeholder="Enter your full name"
-                                />
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="grade">Grade</label>
-                                    <select id="grade">
-                                        <option value="">Select Grade</option>
-                                        <option>9th</option>
-                                        <option>10th</option>
-                                        <option>11th</option>
-                                        <option>12th</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">School Email</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        placeholder="@fremont.k12.ca.us"
-                                    />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="interest">Interest Area</label>
-                                <select id="interest">
-                                    <option value="">
-                                        What interests you most?
-                                    </option>
-                                    <option>Joining the Club</option>
-                                    <option>Conference Participation</option>
-                                    <option>Training & Workshops</option>
-                                    <option>General Information</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="message"
-                                    >Questions or Comments</label
-                                >
-                                <textarea
-                                    id="message"
-                                    placeholder="Anything else you'd like us to know?"
-                                ></textarea>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-blue"
-                                onclick="
-                                    this.textContent = 'Submitted!';
-                                    this.disabled = true;
-                                "
-                            >
-                                Submit Interest Form
-                            </button>
-                        </form>
-                    </div>
+                    <p style="font-size: 0.9rem; color: #888; margin-top: 24px; font-style: italic;">
+                        If your email client does not open automatically, click the button above.
+                    </p>
                 </div>
             </div>
         </section>
@@ -206,11 +143,7 @@
                     <h4>Contact</h4>
                     <ul>
                         <li>
-                            <a
-                                href="mailto:jfktitansmodelunitednations@gmail.com
-"
-                                >Email Officers</a
-                            >
+                            <a href="mailto:jfktitansmodelunitednations@gmail.com">Email Officers</a>
                         </li>
                         <li><a href="#">Instagram</a></li>
                     </ul>
@@ -260,6 +193,11 @@
                             el.classList.add("visible");
                     });
                 }, 100);
+
+                // Auto-open email client after a small delay to let the page render first
+                setTimeout(() => {
+                    window.location.href = "mailto:jfktitansmodelunitednations@gmail.com";
+                }, 600);
             });
 
         </script>
