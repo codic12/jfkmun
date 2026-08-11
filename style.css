@@ -366,6 +366,66 @@ tbody td li:last-child {
     margin-bottom: 0;
 }
 
+/* ── BADGES & MUTED ── */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.badge-free {
+    background-color: #e6f9f0;
+    color: #0d9488;
+    border: 1px solid #ccf5e1;
+}
+.badge-maybe {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fef3c7;
+}
+.muted {
+    color: var(--mid-gray);
+}
+
+/* ── GALLERY ── */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+.gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--light-gray);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 4/3;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ── CARDS ── */
 .card-grid {
     display: grid;

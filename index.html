@@ -11,6 +11,7 @@
         />
         <link rel="stylesheet" href="style.css" />
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     </head>
     <body>
         <!-- NAV -->
@@ -85,15 +86,39 @@
             </div>
         </section>
 
+        <!-- GALLERY -->
+        <section id="gallery" style="background: var(--off-white); padding: 96px 0;">
+            <div class="section-wrap">
+                <div class="reveal">
+                    <p class="section-label">Moments</p>
+                    <h2 class="section-title">Club Gallery</h2>
+                    <div class="divider"></div>
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="assets/index_img/1.jpeg" alt="JFK MUN Club Photo 1" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="assets/index_img/2.jpeg" alt="JFK MUN Club Photo 2" />
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FOOTER -->
         <footer>
             <div class="footer-inner">
                 <div class="footer-brand">
                     <h3>JFK Model United Nations</h3>
                     <p>
-                        John F. Kennedy High School<br />A student-run
-                        organization dedicated to global education and
-                        competitive diplomacy.
+                         John F. Kennedy High School<br />A student-run
+                         organization dedicated to global education and
+                         competitive diplomacy.
                     </p>
                 </div>
                 <div class="footer-col">
@@ -108,20 +133,39 @@
                 <div class="footer-col">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="https://docs.google.com/document/d/1EXAMPLE" target="_blank">Training Slides</a></li>
-                        <li><a href="https://docs.google.com/document/d/1EXAMPLE" target="_blank">Position Paper Guide</a></li>
+                        <li>
+                            <a
+                                href="https://docs.google.com/document/d/1bses4NBI2yMR1eRMyEQd-2YyDYK2SeRCMlwUZtWiS5o/edit?pli=1&tab=t.0"
+                                target="_blank"
+                                >In-Committee Cheat Sheet</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://docs.google.com/document/d/1bses4NBI2yMR1eRMyEQd-2YyDYK2SeRCMlwUZtWiS5o/edit?pli=1&tab=t.0"
+                                target="_blank"
+                                >Resolutions Guide</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://docs.google.com/document/d/1W7Ryn1s90gA_KjcH9oLd0kaT-Fuxnva-76MCW4fycZY/edit?usp=sharing"
+                                target="_blank"
+                                >Research Binder</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://docs.google.com/document/d/143aCyyWxnq0yFiglAtODAho2CiwbPOodHF-syo6MHKY/edit?usp=sharing"
+                                target="_blank"
+                                >Country/Committee Profile Guide</a
+                            >
+                        </li>
                         <li>
                             <a
                                 href="https://bestdelegate.com/resources/"
                                 target="_blank"
                                 >Best Delegate</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="https://titanmunc.org"
-                                target="_blank"
-                                >TitanMUN</a
                             >
                         </li>
                     </ul>
@@ -189,6 +233,24 @@
                 }, 100);
             });
 
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script>
+            const swiper = new Swiper(".mySwiper", {
+                loop: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+            });
         </script>
     </body>
 </html>
