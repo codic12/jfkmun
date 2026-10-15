@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Officers | JFK Model United Nations</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css" />
@@ -19,8 +20,8 @@
                     <img
                         src="/logo.svg"
                         alt="JFK MUN Logo"
-                        width="64"
-                        height="64"
+                        width="44"
+                        height="44"
                     />
                 </a>
                 <button class="nav-toggle" aria-label="Toggle navigation">
@@ -38,41 +39,23 @@
             </div>
         </nav>
 
-        <section
-            class="hero"
-            style="height: 40vh; min-height: 300px; padding: 0; margin-top: 64px;"
-        >
-            <div
-                class="hero-bg"
-                style="filter: blur(4px) brightness(0.5)"
-            ></div>
-            <div class="hero-content">
-                <h1 class="hero-title reveal">Meet the Officers</h1>
+        <header class="page-header">
+            <div class="page-header-inner reveal">
+                <h1 class="page-header-title">Officer Board | 2026-2027</h1>
             </div>
-        </section>
+        </header>
 
-        <section>
+        <section style="padding: 64px 0 96px;">
             <div class="section-wrap">
-                <div class="reveal">
-                    <p class="section-label">Leadership</p>
-                    <h2 class="section-title">2026 - 2027 Officer Board</h2>
-                    <div class="divider"></div>
-                    <!--<p class="section-body">
-                        Our officer board coordinates training sessions, manages
-                        conference logistics, and mentors new members. They are
-                        dedicated to the success and growth of every delegate in
-                        the club.
-                    </p>-->
-                </div>
 
                 <div class="card-grid">
                     <!-- President -->
                     <div class="card reveal">
                         <div class="officer-photo">
-                            <img src="assets/aarna.jpg" alt="Aarna Gupta" />
+                            <img src="assets/aarna.jpg" alt="Aarna Gupta - President" loading="lazy" />
                         </div>
                         <div class="officer-info">
-                            <p class="officer-name">Aarna Gupta</p>
+                            <h3 class="officer-name">Aarna Gupta</h3>
                             <p class="officer-role">President</p>
                         </div>
                     </div>
@@ -80,10 +63,10 @@
                     <!-- Vice President -->
                     <div class="card reveal">
                         <div class="officer-photo">
-                            <img src="assets/gurjus.jpg" alt="Gurjus Bhasin" />
+                            <img src="assets/gurjus.jpg" alt="Gurjus Bhasin - Vice President" loading="lazy" />
                         </div>
                         <div class="officer-info">
-                            <p class="officer-name">Gurjus Bhasin</p>
+                            <h3 class="officer-name">Gurjus Bhasin</h3>
                             <p class="officer-role">Vice President</p>
                         </div>
                     </div>
@@ -91,10 +74,10 @@
                     <!-- Treasurer -->
                     <div class="card reveal">
                         <div class="officer-photo">
-                            <img src="assets/dhruv.jpg" alt="Dhruv Rajamani" />
+                            <img src="assets/dhruv.jpg" alt="Dhruv Rajamani - Treasurer" loading="lazy" />
                         </div>
                         <div class="officer-info">
-                            <p class="officer-name">Dhruv Rajamani</p>
+                            <h3 class="officer-name">Dhruv Rajamani</h3>
                             <p class="officer-role">Treasurer</p>
                         </div>
                     </div>
@@ -102,24 +85,32 @@
                     <!-- Secretary -->
                     <div class="card reveal">
                         <div class="officer-photo">
-                            <img src="assets/vignesh.jpg" alt="Vignesh Kalyanasundaram" />
+                            <img src="assets/vignesh.jpg" alt="Vignesh Kalyanasundaram - Secretary" loading="lazy" />
                         </div>
                         <div class="officer-info">
-                            <p class="officer-name">Vignesh Kalyanasundaram</p>
+                            <h3 class="officer-name">Vignesh Kalyanasundaram</h3>
                             <p class="officer-role">Secretary</p>
                         </div>
                     </div>
 
-                    <!-- Communications Coordinator -->
+                    <!-- Board Director -->
                     <div class="card reveal">
                         <div class="officer-photo">
-                            <img src="assets/aarav.jpg" alt="Aarav Patel" />
+                            <img src="assets/aarav.jpg" alt="Aarav Patel - Board Director" loading="lazy" />
                         </div>
                         <div class="officer-info">
-                            <p class="officer-name">Aarav Patel</p>
-                            <p class="officer-role">
-                                Communications Coordinator
-                            </p>
+                            <h3 class="officer-name">Aarav Patel</h3>
+                            <p class="officer-role">Board Director</p>
+                        </div>
+                    </div>
+
+                    <!-- Vice President -->
+                    <div class="card reveal">
+                        <div class="officer-photo">
+                        </div>
+                        <div class="officer-info">
+                            <h3 class="officer-name">William Jung</h3>
+                            <p class="officer-role">Advisor</p>
                         </div>
                     </div>
                 </div>
@@ -131,18 +122,26 @@
                 <div class="footer-brand">
                     <h3>JFK Model United Nations</h3>
                     <p>
-                        John F. Kennedy High School<br />Fremont, California<br />A
-                        student-run organization dedicated to global education
-                        and competitive diplomacy.
+                        John F. Kennedy High School<br />Fremont, California
                     </p>
+                    <iframe
+                        src="https://maps.google.com/maps?q=John+F.+Kennedy+High+School,+Fremont,+CA&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="150"
+                        style="border:0; border-radius: 8px; margin-top: 14px; max-width: 320px; display: block;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        aria-label="Google Maps - John F. Kennedy High School, Fremont CA">
+                    </iframe>
                 </div>
                 <div class="footer-col">
                     <h4>Navigate</h4>
                     <ul>
                         <li><a href="/index">Home</a></li>
-                        <li><a href="/about">About</a></li>
                         <li><a href="/conferences">Conferences</a></li>
                         <li><a href="/officers">Officers</a></li>
+                        <li><a href="/summer-program">Summer</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -152,6 +151,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1bses4NBI2yMR1eRMyEQd-2YyDYK2SeRCMlwUZtWiS5o/edit?pli=1&tab=t.0"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >In-Committee Cheat Sheet</a
                             >
                         </li>
@@ -159,6 +159,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1miA4TXhRldZngDn9S3wFMS1_M6O4q5qV_gx5zdcV5ac/edit?tab=t.0"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Resolutions Guide</a
                             >
                         </li>
@@ -166,6 +167,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1W7Ryn1s90gA_KjcH9oLd0kaT-Fuxnva-76MCW4fycZY/edit?usp=sharing"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Research Binder</a
                             >
                         </li>
@@ -173,6 +175,7 @@
                             <a
                                 href="https://docs.google.com/document/d/143aCyyWxnq0yFiglAtODAho2CiwbPOodHF-syo6MHKY/edit?usp=sharing"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Country/Committee Profile Guide</a
                             >
                         </li>
@@ -180,6 +183,7 @@
                             <a
                                 href="https://bestdelegate.com/resources/"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Best Delegate</a
                             >
                         </li>
@@ -191,12 +195,12 @@
                         <li>
                             <a href="mailto:jfktitansmodelunitednations@gmail.com">Email Officers</a>
                         </li>
-                        <li><a href="#">Instagram</a></li>
+                        <li><a href="https://www.instagram.com/jfk.modelun/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 JFK Model United Nations</span>
+                <span>&copy; 2026 JFK Model United Nations | site by Gurjus Bhasin</span>
             </div>
         </footer>
 
@@ -240,7 +244,6 @@
                     });
                 }, 100);
             });
-
         </script>
     </body>
 </html>

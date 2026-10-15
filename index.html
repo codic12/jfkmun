@@ -5,13 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JFK Model United Nations | Home</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css" />
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <!-- Fancyapps UI (Fancybox 5 & Carousel) -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css" />
     </head>
     <body>
         <!-- NAV -->
@@ -21,8 +24,8 @@
                     <img
                         src="/logo.svg"
                         alt="JFK MUN Logo"
-                        width="64"
-                        height="64"
+                        width="44"
+                        height="44"
                     />
                 </a>
                 <button class="nav-toggle" aria-label="Toggle navigation">
@@ -40,15 +43,15 @@
             </div>
         </nav>
 
-        <!-- HERO -->
-        <section id="home" class="hero" style="padding: 0">
+        <!-- HERO (Full-area blurred photographic background as it used to be) -->
+        <section id="home" class="hero">
             <div
                 class="hero-bg"
-                style="background-image: url(&quot;clubpic.png&quot;)"
+                style="background-image: url('clubpic.png')"
             ></div>
             <div class="hero-content">
                 <h1 class="hero-title reveal">JFK Model United Nations</h1>
-                <!--<p class="hero-sub reveal">Welcome.</p>-->
+                <p class="hero-sub reveal">Welcome to the homepage of John F. Kennedy High School's Model UN delegation!</p>
             </div>
         </section>
 
@@ -56,83 +59,146 @@
         <section id="about-mun">
             <div class="section-wrap">
                 <div class="reveal">
-                    <p class="section-label">About MUN</p>
                     <h2 class="section-title">What is Model UN?</h2>
-                    <div class="divider"></div>
                     <p class="section-body">
-                        Model United Nations (MUN) is an educational simulation
-                        of the United Nations where students act as diplomats to
-                        research, debate, and solve global issues. Participants
-                        build skills in public speaking by giving speeches to a
-                        new audience and learning how to collaborate with other
-                        delegates while working towards a common goal.
+                        Model United Nations (MUN) is an educational simulation of the United Nations where students act as diplomats to research, debate, and solve global issues. Participants build skills in public speaking by giving speeches to a new audience and learning how to collaborate with other delegates while working towards a common goal.
                     </p>
                     <br />
                     <p class="section-body">
-                        In addition, they learn how to improve their
-                        presentation skills and think on their feet in stressful
-                        situations. At a high school level, students have the
-                        opportunity to attend various conferences in which they
-                        can apply the skills they have learned. This includes
-                        prestigious conferences such as at Stanford and Berkeley
-                        University.
+                        In addition, they learn how to improve their presentation skills and think on their feet in stressful situations. At a high school level, students have the opportunity to attend various conferences in which they can apply the skills they have learned. This includes prestigious conferences such as at Stanford and Berkeley University.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- GALLERY -->
-        <section id="gallery" style="background: var(--off-white); padding: 96px 0;">
+        <!-- CLUB GALLERY (Fancybox 5 & Carousel) -->
+        <section id="gallery" style="background: var(--off-white); padding: 92px 0;">
             <div class="section-wrap">
-                <div class="reveal">
-                    <p class="section-label">Moments</p>
+                <div class="gallery-section-header reveal">
                     <h2 class="section-title">Club Gallery</h2>
-                    <div class="divider"></div>
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/1.jpeg" alt="JFK MUN Club Photo 1" />
+                </div>
+
+                <div class="reveal" style="margin-top: 32px;">
+                    <div class="gallery-carousel-wrap">
+                        <div class="f-carousel" id="clubCarousel">
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/1.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 1">
+                                    <img src="assets/index_img/1.jpeg" alt="JFK MUN Club Photo 1" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/2.jpeg" alt="JFK MUN Club Photo 2" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/2.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 2">
+                                    <img src="assets/index_img/2.jpeg" alt="JFK MUN Club Photo 2" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_0279%20Medium.jpeg" alt="JFK MUN Club Photo 3" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_0279%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 3">
+                                    <img src="assets/index_img/IMG_0279%20Medium.jpeg" alt="JFK MUN Club Photo 3" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_1340%20Medium.jpeg" alt="JFK MUN Club Photo 4" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_1340%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 4">
+                                    <img src="assets/index_img/IMG_1340%20Medium.jpeg" alt="JFK MUN Club Photo 4" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_1940%20Medium.jpeg" alt="JFK MUN Club Photo 5" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_1940%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 5">
+                                    <img src="assets/index_img/IMG_1940%20Medium.jpeg" alt="JFK MUN Club Photo 5" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_2406%20Medium.jpeg" alt="JFK MUN Club Photo 6" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_2406%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 6">
+                                    <img src="assets/index_img/IMG_2406%20Medium.jpeg" alt="JFK MUN Club Photo 6" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_4799%20Medium.jpeg" alt="JFK MUN Club Photo 7" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_4799%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 7">
+                                    <img src="assets/index_img/IMG_4799%20Medium.jpeg" alt="JFK MUN Club Photo 7" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_7391%20Medium.jpeg" alt="JFK MUN Club Photo 8" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_7391%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 8">
+                                    <img src="assets/index_img/IMG_7391%20Medium.jpeg" alt="JFK MUN Club Photo 8" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_8305%20Medium.jpeg" alt="JFK MUN Club Photo 9" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_8305%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 9">
+                                    <img src="assets/index_img/IMG_8305%20Medium.jpeg" alt="JFK MUN Club Photo 9" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/IMG_9290%20Medium.jpeg" alt="JFK MUN Club Photo 10" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/IMG_9290%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 10">
+                                    <img src="assets/index_img/IMG_9290%20Medium.jpeg" alt="JFK MUN Club Photo 10" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/Screenshot%202026-10-13%20at%209.38.46%E2%80%AFPM%20Medium.jpeg" alt="JFK MUN Club Photo 11" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/Screenshot%202026-10-13%20at%209.38.46%E2%80%AFPM%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 11">
+                                    <img src="assets/index_img/Screenshot%202026-10-13%20at%209.38.46%E2%80%AFPM%20Medium.jpeg" alt="JFK MUN Club Photo 11" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/Screenshot%202026-10-13%20at%209.39.07%E2%80%AFPM%20Medium.jpeg" alt="JFK MUN Club Photo 12" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/Screenshot%202026-10-13%20at%209.39.07%E2%80%AFPM%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 12">
+                                    <img src="assets/index_img/Screenshot%202026-10-13%20at%209.39.07%E2%80%AFPM%20Medium.jpeg" alt="JFK MUN Club Photo 12" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="assets/index_img/Screenshot%202026-10-13%20at%209.39.19%E2%80%AFPM%20Medium.jpeg" alt="JFK MUN Club Photo 13" />
+                            <div class="f-carousel__slide">
+                                <a href="assets/index_img/Screenshot%202026-10-13%20at%209.39.19%E2%80%AFPM%20Medium.jpeg" data-fancybox="gallery" data-caption="JFK MUN Delegation Photo 13">
+                                    <img src="assets/index_img/Screenshot%202026-10-13%20at%209.39.19%E2%80%AFPM%20Medium.jpeg" alt="JFK MUN Club Photo 13" />
+                                    <span class="gallery-enlarge-hint">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                        Enlarge
+                                    </span>
+                                </a>
                             </div>
                         </div>
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
                     </div>
                 </div>
             </div>
@@ -144,10 +210,18 @@
                 <div class="footer-brand">
                     <h3>JFK Model United Nations</h3>
                     <p>
-                         John F. Kennedy High School<br />A student-run
-                         organization dedicated to global education and
-                         competitive diplomacy.
+                        John F. Kennedy High School<br />Fremont, California
                     </p>
+                    <iframe
+                        src="https://maps.google.com/maps?q=John+F.+Kennedy+High+School,+Fremont,+CA&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="150"
+                        style="border:0; border-radius: 8px; margin-top: 14px; max-width: 320px; display: block;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        aria-label="Google Maps - John F. Kennedy High School, Fremont CA">
+                    </iframe>
                 </div>
                 <div class="footer-col">
                     <h4>Navigate</h4>
@@ -165,6 +239,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1bses4NBI2yMR1eRMyEQd-2YyDYK2SeRCMlwUZtWiS5o/edit?pli=1&tab=t.0"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >In-Committee Cheat Sheet</a
                             >
                         </li>
@@ -172,6 +247,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1miA4TXhRldZngDn9S3wFMS1_M6O4q5qV_gx5zdcV5ac/edit?tab=t.0"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Resolutions Guide</a
                             >
                         </li>
@@ -179,6 +255,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1W7Ryn1s90gA_KjcH9oLd0kaT-Fuxnva-76MCW4fycZY/edit?usp=sharing"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Research Binder</a
                             >
                         </li>
@@ -186,6 +263,7 @@
                             <a
                                 href="https://docs.google.com/document/d/143aCyyWxnq0yFiglAtODAho2CiwbPOodHF-syo6MHKY/edit?usp=sharing"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Country/Committee Profile Guide</a
                             >
                         </li>
@@ -193,6 +271,7 @@
                             <a
                                 href="https://bestdelegate.com/resources/"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Best Delegate</a
                             >
                         </li>
@@ -204,15 +283,18 @@
                         <li>
                             <a href="mailto:jfktitansmodelunitednations@gmail.com">Email Officers</a>
                         </li>
-                        <li><a href="#">Instagram</a></li>
+                        <li><a href="https://www.instagram.com/jfk.modelun/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 JFK Model United Nations</span>
+                <span>&copy; 2026 JFK Model United Nations | site by Gurjus Bhasin</span>
             </div>
         </footer>
 
+        <!-- Fancyapps UI Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js"></script>
         <script>
             // Hamburger Menu
             const navToggle = document.querySelector(".nav-toggle");
@@ -223,7 +305,6 @@
                 navLinks.classList.toggle("active");
             });
 
-            // Close menu when link is clicked
             document.querySelectorAll(".nav-links a").forEach((n) =>
                 n.addEventListener("click", () => {
                     navToggle.classList.remove("open");
@@ -246,7 +327,6 @@
             );
             reveals.forEach((el) => io.observe(el));
 
-            // Trigger elements already in view on load
             window.addEventListener("load", () => {
                 setTimeout(() => {
                     reveals.forEach((el) => {
@@ -257,24 +337,31 @@
                 }, 100);
             });
 
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script>
-            const swiper = new Swiper(".mySwiper", {
-                loop: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-            });
+            // Initialize Fancyapps Carousel for on-page browsing
+            const clubCarouselEl = document.getElementById("clubCarousel");
+            if (clubCarouselEl && typeof Carousel !== "undefined") {
+                new Carousel(clubCarouselEl, {
+                    Dots: false,
+                    Navigation: true,
+                    infinite: true,
+                });
+            }
+
+            // Initialize Fancybox Gallery Library for high-res viewing, zoom & thumbnails
+            if (typeof Fancybox !== "undefined") {
+                Fancybox.bind('[data-fancybox="gallery"]', {
+                    Thumbs: {
+                        type: "classic",
+                    },
+                    Toolbar: {
+                        display: {
+                            left: ["infobar"],
+                            middle: ["zoomIn", "zoomOut", "toggle1to1"],
+                            right: ["slideshow", "thumbs", "close"],
+                        },
+                    },
+                });
+            }
         </script>
     </body>
 </html>

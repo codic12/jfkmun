@@ -5,13 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Summer Program | JFK Model United Nations</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css" />
         <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <!-- Fancyapps UI (Fancybox 5 & Carousel) -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css" />
     </head>
     <body>
         <nav id="navbar">
@@ -20,8 +23,8 @@
                     <img
                         src="/logo.svg"
                         alt="JFK MUN Logo"
-                        width="64"
-                        height="64"
+                        width="44"
+                        height="44"
                     />
                 </a>
                 <button class="nav-toggle" aria-label="Toggle navigation">
@@ -39,85 +42,74 @@
             </div>
         </nav>
 
-        <section
-            class="hero"
-            style="height: 50vh; min-height: 400px; padding: 0; margin-top: 64px;"
-        >
-            <div
-                class="hero-bg"
-                style="background-image: url('assets/summer/1.jpeg'); filter: blur(6px) brightness(0.4)"
-            ></div>
-            <div class="hero-content">
-                <h1 class="hero-title reveal">JFK MUN Summer Program</h1>
-                <p class="hero-sub reveal">
-                    Thank you to everyone who participated in our 2026 summer program!
-                </p>
+        <header class="page-header">
+            <div class="page-header-inner reveal">
+                <h1 class="page-header-title">Summer Program (2026 Recap)</h1>
             </div>
-        </section>
+        </header>
 
-        <section>
+        <section style="padding: 64px 0 96px;">
             <div class="section-wrap">
                 <div class="reveal">
-                    <h2 class="section-title">2026 Summer Program - Completed</h2>
-                    <div class="divider"></div>
                     <p class="section-body">
-                        Our 2026 summer program was a great success! Over the course of six weeks, middle school students learned the fundamentals of Model United Nations, including research techniques, resolution drafting, and public speaking skills.
+                        Our 2026 summer program was a phenomenal success! Over the course of six weeks, incoming middle school students learned the fundamentals of Model United Nations, including research techniques and writing effective resolutions; in addition, they learned to present themselves confidently and think on the debate floor.
                     </p>
-                    <br />
-                    <div
-                        class="card"
-                        style="
-                            padding: 32px;
-                            border-left: 4px solid var(--blue-dark);
-                            max-width: 600px;
-                        "
-                    >
-                        <h3
-                            style="
-                                font-family: var(--serif-display);
-                                margin-bottom: 16px;
-                            "
-                        >
-                            Program Summary
+
+                    <div class="program-summary-card">
+                        <h3 style="font-family: var(--serif-display); font-size: 1.25rem; font-weight: 600; color: var(--dark); margin-bottom: 8px;">
+                            Program Overview
                         </h3>
-                        <ul class="summer-details" style="color: var(--text)">
-                            <li>
-                                <span>Dates:</span> Tuesdays, June 16 – July 21, 2026
-                            </li>
+                        <ul class="summer-details">
+                            <li><span>Schedule:</span> Tuesdays, June 16 – July 21, 2026</li>
                             <li><span>Time:</span> 10:00 AM – 12:00 PM</li>
                             <li><span>Location:</span> Millard Elementary School</li>
-                            <li><span>Participants:</span> 40+ middle school students</li>
+                            <li><span>Delegates:</span> 40+ middle school participants</li>
                         </ul>
                     </div>
-                    <br />
 
-                    <div class="reveal">
-                        <h3
-                            style="
-                                font-family: var(--serif-display);
-                                margin-bottom: 16px;
-                            "
-                        >
-                            Program Photos
+                    <div class="reveal" style="margin-top: 48px;">
+                        <h3 style="font-family: var(--serif-display); font-size: 1.75rem; font-weight: 700; color: var(--dark); margin-bottom: 24px;">
+                            Program Highlights
                         </h3>
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="assets/summer/1.jpeg" alt="Summer Program Photo 1">
+                        <div class="gallery-carousel-wrap">
+                            <div class="f-carousel" id="summerCarousel">
+                                <div class="f-carousel__slide">
+                                    <a href="assets/summer/1.jpeg" data-fancybox="summer-gallery" data-caption="Summer Program 2026 - Photo 1">
+                                        <img src="assets/summer/1.jpeg" alt="Summer Program Photo 1" />
+                                        <span class="gallery-enlarge-hint">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                            Enlarge
+                                        </span>
+                                    </a>
                                 </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/summer/2.jpeg" alt="Summer Program Photo 2">
+                                <div class="f-carousel__slide">
+                                    <a href="assets/summer/2.jpeg" data-fancybox="summer-gallery" data-caption="Summer Program 2026 - Photo 2">
+                                        <img src="assets/summer/2.jpeg" alt="Summer Program Photo 2" />
+                                        <span class="gallery-enlarge-hint">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                            Enlarge
+                                        </span>
+                                    </a>
                                 </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/summer/3.jpeg" alt="Summer Program Photo 3">
+                                <div class="f-carousel__slide">
+                                    <a href="assets/summer/3.jpeg" data-fancybox="summer-gallery" data-caption="Summer Program 2026 - Photo 3">
+                                        <img src="assets/summer/3.jpeg" alt="Summer Program Photo 3" />
+                                        <span class="gallery-enlarge-hint">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                            Enlarge
+                                        </span>
+                                    </a>
                                 </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/summer/4.jpeg" alt="Summer Program Photo 4">
+                                <div class="f-carousel__slide">
+                                    <a href="assets/summer/4.jpeg" data-fancybox="summer-gallery" data-caption="Summer Program 2026 - Photo 4">
+                                        <img src="assets/summer/4.jpeg" alt="Summer Program Photo 4" />
+                                        <span class="gallery-enlarge-hint">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                                            Enlarge
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
                         </div>
                     </div>
 
@@ -130,10 +122,18 @@
                 <div class="footer-brand">
                     <h3>JFK Model United Nations</h3>
                     <p>
-                        John F. Kennedy High School<br />A student-run
-                        organization dedicated to global education and
-                        competitive diplomacy.
+                        John F. Kennedy High School<br />Fremont, California
                     </p>
+                    <iframe
+                        src="https://maps.google.com/maps?q=John+F.+Kennedy+High+School,+Fremont,+CA&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="150"
+                        style="border:0; border-radius: 8px; margin-top: 14px; max-width: 320px; display: block;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        aria-label="Google Maps - John F. Kennedy High School, Fremont CA">
+                    </iframe>
                 </div>
                 <div class="footer-col">
                     <h4>Navigate</h4>
@@ -151,6 +151,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1bses4NBI2yMR1eRMyEQd-2YyDYK2SeRCMlwUZtWiS5o/edit?pli=1&tab=t.0"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >In-Committee Cheat Sheet</a
                             >
                         </li>
@@ -158,6 +159,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1miA4TXhRldZngDn9S3wFMS1_M6O4q5qV_gx5zdcV5ac/edit?tab=t.0"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Resolutions Guide</a
                             >
                         </li>
@@ -165,6 +167,7 @@
                             <a
                                 href="https://docs.google.com/document/d/1W7Ryn1s90gA_KjcH9oLd0kaT-Fuxnva-76MCW4fycZY/edit?usp=sharing"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Research Binder</a
                             >
                         </li>
@@ -172,6 +175,7 @@
                             <a
                                 href="https://docs.google.com/document/d/143aCyyWxnq0yFiglAtODAho2CiwbPOodHF-syo6MHKY/edit?usp=sharing"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Country/Committee Profile Guide</a
                             >
                         </li>
@@ -179,6 +183,7 @@
                             <a
                                 href="https://bestdelegate.com/resources/"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 >Best Delegate</a
                             >
                         </li>
@@ -190,15 +195,18 @@
                         <li>
                             <a href="mailto:jfktitansmodelunitednations@gmail.com">Email Officers</a>
                         </li>
-                        <li><a href="#">Instagram</a></li>
+                        <li><a href="https://www.instagram.com/jfk.modelun/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 JFK Model United Nations</span>
+                <span>&copy; 2026 JFK Model United Nations | site by Gurjus Bhasin</span>
             </div>
         </footer>
 
+        <!-- Fancyapps UI Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js"></script>
         <script>
             // Hamburger Menu
             const navToggle = document.querySelector(".nav-toggle");
@@ -209,7 +217,6 @@
                 navLinks.classList.toggle("active");
             });
 
-            // Close menu when link is clicked
             document.querySelectorAll(".nav-links a").forEach((n) =>
                 n.addEventListener("click", () => {
                     navToggle.classList.remove("open");
@@ -230,6 +237,7 @@
                 { threshold: 0.1 },
             );
             reveals.forEach((el) => io.observe(el));
+
             window.addEventListener("load", () => {
                 setTimeout(() => {
                     reveals.forEach((el) => {
@@ -240,24 +248,31 @@
                 }, 100);
             });
 
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script>
-            const swiper = new Swiper(".mySwiper", {
-                loop: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
-                },
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-            });
+            // Initialize Summer Program Carousel
+            const summerCarouselEl = document.getElementById("summerCarousel");
+            if (summerCarouselEl && typeof Carousel !== "undefined") {
+                new Carousel(summerCarouselEl, {
+                    Dots: false,
+                    Navigation: true,
+                    infinite: true,
+                });
+            }
+
+            // Initialize Fancybox Gallery
+            if (typeof Fancybox !== "undefined") {
+                Fancybox.bind('[data-fancybox="summer-gallery"]', {
+                    Thumbs: {
+                        type: "classic",
+                    },
+                    Toolbar: {
+                        display: {
+                            left: ["infobar"],
+                            middle: ["zoomIn", "zoomOut", "toggle1to1"],
+                            right: ["slideshow", "thumbs", "close"],
+                        },
+                    },
+                });
+            }
         </script>
     </body>
 </html>
