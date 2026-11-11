@@ -7,4 +7,4 @@ export const app = configured ? initializeApp(firebaseConfig) : null;
 export const auth = app ? getAuth(app) : null;
 export const db = app ? getFirestore(app) : null;
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export const message = (text, error = false) => { const el = document.getElementById('notice'); el.textContent = text; el.style.color = error ? '#9b271b' : '#17623d'; };
+export const message = (value, error = false) => { const el=document.getElementById('notice');el.textContent=value;el.hidden=!value;el.classList.toggle('error',error); };

@@ -1,45 +1,32 @@
 import { auth, db, configured, escapeHtml as esc, message } from './firebase.js';
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
-import { collection, doc, getDoc, getDocs, query, where, addDoc, setDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
-const authPanel = document.getElementById('auth-panel'), memberPanel = document.getElementById('member-panel');
-if (!configured) message('Portal setup is pending. An administrator must add the Firebase web configuration.', true);
-else onAuthStateChanged(auth, async user => {
-  authPanel.hidden = !!user; memberPanel.hidden = !user;
-  if (!user) return;
-  document.getElementById('welcome').textContent = `Welcome, ${user.displayName || user.email}`;
-  try {
-    const admin = await getDoc(doc(db, 'admins', user.uid));
-    document.getElementById('admin-link').hidden = !admin.exists();
-    const [forms, submissions, assignments] = await Promise.all([
-      getDocs(query(collection(db, 'forms'), where('open', '==', true))),
-      getDocs(query(collection(db, 'submissions'), where('uid', '==', user.uid))),
-      getDocs(query(collection(db, 'assignments'), where('uid', '==', user.uid)))
-    ]);
-    renderForms(forms.docs, new Set(submissions.docs.map(d => d.data().formId)));
-    document.getElementById('submissions').innerHTML = submissions.empty ? '<p>No submissions yet.</p>' : submissions.docs.map(d => `<div class="portal-item"><h3>${esc(d.data().formTitle)}</h3><small>Submitted ${esc(d.data().createdAt?.toDate?.().toLocaleDateString() || 'recently')}</small></div>`).join('');
-    document.getElementById('assignments').innerHTML = assignments.empty ? '<p>No committee assignments yet.</p>' : assignments.docs.map(d => `<div class="portal-item"><h3>${esc(d.data().conference)}</h3><p>${esc(d.data().committee)}${d.data().country ? ` — ${esc(d.data().country)}` : ''}</p></div>`).join('');
-  } catch (e) { message(e.message, true); }
-});
-function renderForms(docs, submitted) {
-  const container = document.getElementById('forms');
-  container.innerHTML = docs.length ? docs.map(d => { const f=d.data(); return `<div class="portal-item"><h3>${esc(f.title)}</h3><p>${esc(f.description)}</p>${submitted.has(d.id) ? '<small>Submitted</small>' : `<form data-form-id="${esc(d.id)}">${(f.questions || []).map((q,i)=>`<label>${esc(q)}<textarea name="answer-${i}" required maxlength="2000"></textarea></label>`).join('')}<button type="submit">Submit</button></form>`}</div>`; }).join('') : '<p>No forms are open right now.</p>';
-  container.querySelectorAll('form').forEach(form => form.addEventListener('submit', async e => {
-    e.preventDefault(); const button=form.querySelector('button'); button.disabled=true;
-    try { const id=form.dataset.formId, formDoc=await getDoc(doc(db,'forms',id)); if(!formDoc.exists() || !formDoc.data().open) throw Error('This form is closed.'); const questions=formDoc.data().questions || []; const answers=questions.map((question,i)=>({question,answer:form.elements[`answer-${i}`].value.trim()})); if(answers.some(a=>!a.answer)) throw Error('Complete every answer.'); await setDoc(doc(db,'submissions',`${auth.currentUser.uid}_${id}`), {uid:auth.currentUser.uid,formId:id,formTitle:formDoc.data().title,answers,createdAt:serverTimestamp()}); message('Form submitted.'); form.replaceWith(Object.assign(document.createElement('small'),{textContent:'Submitted'})); } catch(err){message(err.message,true);button.disabled=false;}
-  }));
+import { collection, doc, getDoc, getDocs, query, where, setDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
+const $ = id => document.getElementById(id);
+let conferences = [], submissions = [], assignments = [];
+const summary = value => value ? esc(value) : 'Details coming soon';
+const assignedTo = c => assignments.filter(a => a.conferenceId === c.id || (!a.conferenceId && a.conference === c.title));
+const submittedTo = c => submissions.find(s => s.formId === c.id);
+const statusFor = c => assignedTo(c).length ? ['Assigned','assigned'] : submittedTo(c) ? ['Submitted','submitted'] : c.open ? ['Signup open','open'] : ['Closed','closed'];
+function conferenceCard(c) { const [label,kind]=statusFor(c); return `<article class="conference-card"><div class="conference-top"><span class="eyebrow">CONFERENCE</span><span class="status ${kind}">${label}</span></div><h3>${esc(c.title)}</h3><p>${summary(c.description)}</p><div class="meta-row">${c.dates?`<span class="meta-chip">${esc(c.dates)}</span>`:''}${c.location?`<span class="meta-chip">${esc(c.location)}</span>`:''}</div><div class="conference-footer"><button data-open="${esc(c.id)}">View details →</button></div></article>`; }
+function renderDirectory(){
+ $('conference-count').textContent=conferences.length;$('submission-count').textContent=submissions.length;$('assignment-count').textContent=assignments.length;
+ $('conference-list').innerHTML=conferences.length?conferences.map(conferenceCard).join(''):'<div class="empty-state"><strong>No conferences yet</strong><p>Check back soon for the next signup.</p></div>';
+ $('conference-list').querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openConference(b.dataset.open)));
+ const extras=assignments.filter(a=>!conferences.some(c=>a.conferenceId===c.id || (!a.conferenceId && a.conference===c.title)));
+ $('unmatched-assignments').hidden=!extras.length;$('unmatched-assignments').querySelector('div').innerHTML=extras.map(a=>`<p><strong>${esc(a.conference)}</strong> · ${esc(a.committee)}${a.country?' · '+esc(a.country):''}</p>`).join('');
 }
-document.getElementById('auth-form').addEventListener('submit', async e => { e.preventDefault(); const action=e.submitter?.value || 'signin', email=document.getElementById('email').value.trim(), password=document.getElementById('password').value, name=document.getElementById('full-name').value.trim(); try { if(action==='register'){if(!name) throw Error('Enter your full name to create an account.'); const result=await createUserWithEmailAndPassword(auth,email,password); await updateProfile(result.user,{displayName:name}); await setDoc(doc(db,'profiles',result.user.uid),{name,email,createdAt:serverTimestamp()}); document.getElementById('welcome').textContent=`Welcome, ${name}`;} else await signInWithEmailAndPassword(auth,email,password); message('Signed in.'); } catch(err){message(err.message,true);} });
-document.getElementById('reset-password').addEventListener('click',async()=>{const email=document.getElementById('email').value.trim();if(!email)return message('Enter your email address first.',true);try{await sendPasswordResetEmail(auth,email);message('Password reset email sent.');}catch(err){message(err.message,true);}});
-document.getElementById('sign-out').addEventListener('click',()=>signOut(auth));
-const toggle=document.querySelector('.nav-toggle');toggle.addEventListener('click',()=>document.querySelector('.nav-links').classList.toggle('active'));
+function openConference(id){ const c=conferences.find(c=>c.id===id); if(!c)return; location.hash=encodeURIComponent(id);$('directory-view').hidden=true;$('conference-view').hidden=false; const [label,kind]=statusFor(c), submitted=submittedTo(c), placements=assignedTo(c);
+ $('conference-detail').innerHTML=`<div class="detail-header"><span class="status ${kind}">${label}</span><h1>${esc(c.title)}</h1><p>${summary(c.description)}</p><div class="meta-row">${c.dates?`<span class="meta-chip">Dates · ${esc(c.dates)}</span>`:''}${c.location?`<span class="meta-chip">Location · ${esc(c.location)}</span>`:''}</div></div><div class="detail-grid"><div><section class="surface"><span class="eyebrow">PREFERENCES</span><h2>${submitted?'Your submission':c.open?'Submit your preferences':'Signup closed'}</h2>${submitted?`<p class="muted">Your preferences were submitted${submitted.createdAt?.toDate?.()?' on '+esc(submitted.createdAt.toDate().toLocaleDateString()):''}.</p>${(submitted.answers||[]).map(a=>`<div class="answer-block"><strong>${esc(a.question)}</strong><p>${esc(a.answer)}</p></div>`).join('')}`:c.open?`<p class="muted">Tell us your committee preferences for this conference. Each member can submit once.</p><form id="conference-form" class="form-grid">${(c.questions||[]).map((q,i)=>`<label>${esc(q)}<textarea name="answer-${i}" required maxlength="2000"></textarea></label>`).join('')}<button class="primary-button" type="submit">Submit preferences</button></form>`:'<p class="muted">This conference is no longer accepting preferences.</p>'}</section></div><aside><section class="surface"><span class="eyebrow">YOUR PLACEMENT</span><h2>Committee assignment</h2>${placements.length?placements.map(a=>`<div class="assignment-item"><strong>${esc(a.committee)}</strong><small>${esc(a.country||'Country or role to be announced')}</small></div>`).join(''):'<p class="muted">No committee has been assigned yet. Check back after assignments are announced.</p>'}</section><section class="surface"><span class="eyebrow">NEXT STEPS</span><h2>Conference status</h2><p class="muted">${placements.length?'Your assignment is ready. Review your committee and prepare for the conference.':submitted?'Your preferences are in. Officers will review submissions and post assignments here.':c.open?'Complete the preference form to be considered for this conference.':'This signup is closed.'}</p></section></aside></div>`;
+ const form=$('conference-form');if(form)form.addEventListener('submit',async e=>{e.preventDefault();const button=form.querySelector('button');button.disabled=true;try{const current=await getDoc(doc(db,'forms',id));if(!current.exists()||!current.data().open)throw Error('This signup has closed.');const answers=(current.data().questions||[]).map((question,i)=>({question,answer:form.elements[`answer-${i}`].value.trim()}));if(!answers.length||answers.some(a=>!a.answer))throw Error('Complete every answer.');await setDoc(doc(db,'submissions',`${auth.currentUser.uid}_${id}`),{uid:auth.currentUser.uid,formId:id,formTitle:current.data().title,answers,createdAt:serverTimestamp()});submissions.push({formId:id,formTitle:current.data().title,answers});message('Preferences submitted.');renderDirectory();openConference(id);}catch(err){message(err.message,true);button.disabled=false;}});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function showDirectory(){location.hash='';$('conference-view').hidden=true;$('directory-view').hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+$('member-back').addEventListener('click',showDirectory);
+if(!configured)message('Firebase setup is pending. Add the web app configuration.',true);
+else onAuthStateChanged(auth,async user=>{ $('auth-panel').hidden=!!user;$('member-panel').hidden=!user;$('sign-out-item').hidden=!user;if(!user)return;$('welcome').textContent=`Welcome, ${(user.displayName||user.email).split(' ')[0]}`;try{const [admin,forms,subs,places]=await Promise.all([getDoc(doc(db,'admins',user.uid)),getDocs(query(collection(db,'forms'),where('open','==',true))),getDocs(query(collection(db,'submissions'),where('uid','==',user.uid))),getDocs(query(collection(db,'assignments'),where('uid','==',user.uid)))]);$('admin-nav-item').hidden=!admin.exists();conferences=forms.docs.map(d=>({id:d.id,...d.data()}));submissions=subs.docs.map(d=>({id:d.id,...d.data()}));assignments=places.docs.map(d=>({id:d.id,...d.data()}));for(const s of submissions){if(!conferences.some(c=>c.id===s.formId))conferences.push({id:s.formId,title:s.formTitle||'Past conference',description:'This signup has closed.',open:false,questions:[]});}for(const a of assignments){if(!conferences.some(c=>c.id===a.conferenceId||(!a.conferenceId&&c.title===a.conference)))conferences.push({id:a.conferenceId||`legacy:${a.conference}`,title:a.conference||'Past conference',description:'This signup has closed.',open:false,questions:[]});}conferences.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));renderDirectory();const id=decodeURIComponent(location.hash.slice(1));if(id)openConference(id);}catch(err){message(err.message,true);}});
+$('auth-form').addEventListener('submit',async e=>{e.preventDefault();const action=e.submitter?.value||'signin',email=$('email').value.trim(),password=$('password').value,name=$('full-name').value.trim();try{if(action==='register'){if(!name)throw Error('Enter your full name to create an account.');const result=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(result.user,{displayName:name});await setDoc(doc(db,'profiles',result.user.uid),{name,email,createdAt:serverTimestamp()});$('welcome').textContent=`Welcome, ${name.split(' ')[0]}`;}else await signInWithEmailAndPassword(auth,email,password);message('Signed in.');}catch(err){message(err.message,true);}});
+$('google-sign-in').addEventListener('click',async()=>{try{const result=await signInWithPopup(auth,new GoogleAuthProvider());const profile=doc(db,'profiles',result.user.uid);if(!(await getDoc(profile)).exists())await setDoc(profile,{name:result.user.displayName||result.user.email,email:result.user.email,createdAt:serverTimestamp()});message('Signed in with Google.');}catch(err){message(err.message,true);}});
+$('reset-password').addEventListener('click',async()=>{const email=$('email').value.trim();if(!email)return message('Enter your email address first.',true);try{await sendPasswordResetEmail(auth,email);message('Password reset email sent.');}catch(err){message(err.message,true);}});
+$('sign-out').addEventListener('click',()=>signOut(auth));
 
-document.getElementById('google-sign-in').addEventListener('click', async () => {
-  try {
-    const result = await signInWithPopup(auth, new GoogleAuthProvider());
-    const profile = doc(db, 'profiles', result.user.uid);
-    if (!(await getDoc(profile)).exists()) {
-      await setDoc(profile, {name: result.user.displayName || result.user.email, email: result.user.email, createdAt: serverTimestamp()});
-    }
-    message('Signed in with Google.');
-  } catch (err) { message(err.message, true); }
-});
+const navToggle=document.querySelector('.nav-toggle');navToggle.addEventListener('click',()=>{const open=navToggle.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('active',open);navToggle.setAttribute('aria-expanded',String(open));});
