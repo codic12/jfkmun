@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Member Portal | JFK Model UN</title>
+  <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="portal.css">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+</head>
+<body>
+<nav id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="logo.svg" alt="JFK MUN" width="44" height="44"></a><button class="nav-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="conferences.html">Conferences</a></li><li><a href="signup.html">Join</a></li><li><a href="portal.html" class="nav-cta active">Portal</a></li></ul></div></nav>
+<header class="page-header"><div class="page-header-inner"><h1 class="page-header-title">Member Portal</h1></div></header>
+<main class="portal-wrap">
+  <p id="notice" class="portal-notice" role="status"></p>
+  <section id="auth-panel" class="portal-card" hidden><h2>Sign in or create an account</h2><p>Use your email address to access forms and committee assignments.</p><form id="auth-form"><label>Full name <input id="full-name" autocomplete="name" maxlength="100"></label><label>Email <input id="email" type="email" autocomplete="email" required></label><label>Password <input id="password" type="password" autocomplete="current-password" minlength="6" required></label><div class="portal-actions"><button type="submit" name="action" value="signin">Sign in</button><button type="submit" name="action" value="register" class="secondary">Create account</button></div></form><p>Or</p><button id="google-sign-in" class="secondary">Continue with Google</button><br><button id="reset-password" class="text-button">Reset password</button></section>
+  <div id="member-panel" hidden><div class="portal-heading"><h2 id="welcome">Welcome</h2><div><a id="admin-link" href="admin.html" hidden>Admin dashboard</a> <button id="sign-out" class="secondary">Sign out</button></div></div><section class="portal-card"><h2>My committee assignments</h2><div id="assignments"></div></section><section class="portal-card"><h2>Open forms</h2><div id="forms"></div></section><section class="portal-card"><h2>My submissions</h2><div id="submissions"></div></section></div>
+</main>
+<script type="module" src="portal.js"></script>
+</body></html>

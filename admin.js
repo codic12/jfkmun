@@ -1,0 +1,21 @@
+import { auth, db, configured, escapeHtml as esc, message } from './firebase.js';
+import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+import { collection, doc, getDoc, getDocs, addDoc, setDoc, updateDoc, deleteDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
+let members=[];
+if (!configured) message('Add Firebase configuration before using the admin dashboard.',true);
+else onAuthStateChanged(auth, async user => {
+  if(!user){message('Sign in through the member portal first.',true);return;}
+  try { const admin=await getDoc(doc(db,'admins',user.uid)); if(!admin.exists()){message('This account is not an admin.',true);return;} document.getElementById('admin-panel').hidden=false; await refresh(); } catch(e){message(e.message,true);}
+});
+async function refresh(){
+  const [forms,profiles,submissions,assignments]=await Promise.all(['forms','profiles','submissions','assignments'].map(c=>getDocs(collection(db,c))));
+  members=profiles.docs.map(d=>({uid:d.id,...d.data()}));
+  document.getElementById('form-list').innerHTML=forms.docs.map(d=>`<div class="portal-item"><strong>${esc(d.data().title)}</strong> — ${d.data().open?'Open':'Closed'} <button data-toggle="${esc(d.id)}" data-open="${d.data().open}">${d.data().open?'Close':'Reopen'}</button></div>`).join('');
+  document.querySelectorAll('[data-toggle]').forEach(b=>b.addEventListener('click',async()=>{try{await updateDoc(doc(db,'forms',b.dataset.toggle),{open:b.dataset.open!=='true'});await refresh();}catch(e){message(e.message,true);}}));
+  const byUid=new Map();assignments.docs.forEach(d=>{const a=d.data();if(!byUid.has(a.uid))byUid.set(a.uid,[]);byUid.get(a.uid).push({id:d.id,...a});});
+  document.getElementById('members').innerHTML=members.length?members.map(m=>`<div class="portal-item"><h3>${esc(m.name||m.email)}</h3><small>${esc(m.email)}</small><div>${(byUid.get(m.uid)||[]).map(a=>`<p>${esc(a.conference)} — ${esc(a.committee)}${a.country?' — '+esc(a.country):''} <button data-remove="${esc(a.id)}" class="secondary">Remove</button></p>`).join('')}</div><form class="portal-inline" data-uid="${esc(m.uid)}"><label>Conference<input name="conference" required maxlength="120"></label><label>Committee<input name="committee" required maxlength="120"></label><label>Country / role<input name="country" maxlength="120"></label><button type="submit">Assign</button></form></div>`).join(''):'<p>No members yet.</p>';
+  document.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click',async()=>{try{await deleteDoc(doc(db,'assignments',b.dataset.remove));await refresh();}catch(e){message(e.message,true);}}));
+  document.querySelectorAll('form[data-uid]').forEach(f=>f.addEventListener('submit',async e=>{e.preventDefault();const data=new FormData(f);try{await addDoc(collection(db,'assignments'),{uid:f.dataset.uid,conference:data.get('conference').trim(),committee:data.get('committee').trim(),country:data.get('country').trim(),createdAt:serverTimestamp()});message('Assignment saved.');await refresh();}catch(err){message(err.message,true);}}));
+  document.getElementById('all-submissions').innerHTML=submissions.empty?'<p>No submissions yet.</p>':submissions.docs.map(d=>{const s=d.data(),m=members.find(m=>m.uid===s.uid);return `<div class="portal-item"><h3>${esc(s.formTitle)}</h3><small>${esc(m?.name||m?.email||s.uid)}</small>${(s.answers||[]).map(a=>`<p class="portal-answer"><strong>${esc(a.question)}</strong><br>${esc(a.answer)}</p>`).join('')}</div>`;}).join('');
+}
+document.getElementById('new-form').addEventListener('submit',async e=>{e.preventDefault();const f=e.currentTarget,data=new FormData(f),questions=data.get('questions').split('\n').map(q=>q.trim()).filter(Boolean);if(!questions.length)return message('Add at least one question.',true);try{await addDoc(collection(db,'forms'),{title:data.get('title').trim(),description:data.get('description').trim(),questions,type:'conference-signup',open:true,createdAt:serverTimestamp()});f.reset();f.elements.questions.value='Grade level\nPrevious Model UN experience\nFirst committee preference\nSecond committee preference\nCountry or role preference\nScheduling or accessibility notes';message('Conference signup published.');await refresh();}catch(err){message(err.message,true);}});
