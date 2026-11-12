@@ -5,9 +5,10 @@ service cloud.firestore {
     function admin() { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
     match /admins/{uid} { allow read: if signedIn() && request.auth.uid == uid; allow write: if false; }
     match /profiles/{uid} {
-      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.keys().hasOnly(['name','email','createdAt']) && request.resource.data.email == request.auth.token.email;
+      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.keys().hasOnly(['name','email','createdAt','phone','contactPreference']) && request.resource.data.email == request.auth.token.email && (!('phone' in request.resource.data) || (request.resource.data.phone is string && request.resource.data.phone.size() <= 30)) && (!('contactPreference' in request.resource.data) || request.resource.data.contactPreference in ['email','text','either']);
       allow read: if admin() || (signedIn() && request.auth.uid == uid);
-      allow update, delete: if admin();
+      allow update: if admin() || (signedIn() && request.auth.uid == uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['phone','contactPreference']) && request.resource.data.phone is string && request.resource.data.phone.size() <= 30 && request.resource.data.contactPreference in ['email','text','either']);
+      allow delete: if admin();
     }
     match /forms/{id} {
       allow read: if admin() || (signedIn() && resource.data.open == true);
