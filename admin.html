@@ -11,9 +11,9 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css?v=20261113" />
-        <link rel="stylesheet" href="portal.css?v=20261113-portal" />
+        <link rel="stylesheet" href="portal.css?v=20261113-editor" />
         <link rel="icon" href="logo.svg" type="image/svg+xml" />
-        <link rel="stylesheet" href="theme.css?v=20261113-6" />
+        <link rel="stylesheet" href="theme.css?v=20261113-7" />
     </head>
     <body class="portal-body">
         <nav id="navbar">
@@ -60,9 +60,9 @@
                         <div>
                             <h1>Conference management</h1>
                         </div>
-                        <button id="show-create" class="primary-button">
+                        <div class="admin-top-actions"><button id="show-master-roster" class="outline-button" type="button">All delegates</button><button id="show-create" class="primary-button">
                             + New conference
-                        </button>
+                        </button></div>
                     </div>
                     <div class="section-heading">
                         <div><h2>Conferences</h2></div>
@@ -129,33 +129,7 @@
                                     maxlength="1000"
                                     placeholder="What should delegates know about this conference?"
                                 ></textarea></label
-                            ><label
-                                >Resource links
-                                <span class="field-help"
-                                    >One per line: Label | https://example.com.
-                                    Add waiver, logistics slides, conference
-                                    website, and other useful links.</span
-                                ><textarea
-                                    name="resources"
-                                    maxlength="4000"
-                                    placeholder="Waiver | https://example.com/waiver&#10;Logistics slides | https://example.com/slides"
-                                ></textarea></label
-                            ><label
-                                >Signup questions
-                                <span class="field-help"
-                                    >One question per line. Members answer each
-                                    question when applying.</span
-                                ><textarea
-                                    name="questions"
-                                    required
-                                    maxlength="3000"
-                                >
-Previous Model UN experience
-First committee preference
-Second committee preference
-Country or role preference
-Scheduling or accessibility notes</textarea></label
-                            ><button type="submit" class="primary-button">
+                            ><div class="form-list-section"><div class="form-list-heading"><strong>Resource links</strong><span class="field-help">Waivers, logistics, and conference websites</span></div><div class="resource-fields" data-resource-fields></div><button class="outline-button" type="button" data-add-resource>Add link</button></div><div class="form-list-section"><div class="form-list-heading"><strong>Signup questions</strong><span class="field-help">Members answer these when submitting preferences.</span></div><div class="question-fields" data-question-fields></div><button class="outline-button" type="button" data-add-question>Add question</button></div><button type="submit" class="primary-button">
                                 Publish conference
                             </button>
                         </form>
@@ -167,7 +141,7 @@ Scheduling or accessibility notes</textarea></label
                     </button>
                     <div id="admin-conference-detail"></div>
                 </div>
-                <div id="roster-view" hidden>
+                <div id="master-roster-view" hidden><button id="master-roster-back" class="back-button" type="button">← Conferences</button><div class="page-lead"><div><h1>All delegates</h1><p>Edit member details across every conference. Email addresses come from sign in accounts.</p></div></div><label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Search delegates</span><input id="master-search" type="search" placeholder="Search delegates" autocomplete="off"></label><div class="master-roster-wrap"><table class="master-roster"><thead><tr><th>Delegate</th><th>Email</th><th>Graduation year</th><th>Grade</th><th>Phone</th><th>Contact method</th><th>Conferences</th><th></th></tr></thead><tbody id="master-roster-body"></tbody></table></div></div><div id="roster-view" hidden>
                     <div class="roster-controls">
                         <button id="roster-back" class="back-button">
                             ← Conference
@@ -192,6 +166,6 @@ Scheduling or accessibility notes</textarea></label
                 </div>
             </div>
         </main>
-        <script type="module" src="admin.js?v=20261113-3"></script>
+        <script type="module" src="admin.js?v=20261113-7"></script>
     </body>
 </html>

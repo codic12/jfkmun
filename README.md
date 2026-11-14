@@ -18,7 +18,7 @@ Admins create a conference with dates, location, overview, and preference questi
 
 To run locally, use `python3 -m http.server 8000` from this directory and open `http://localhost:8000/portal.html`. Add `localhost` to Firebase Authentication's Authorized domains for local sign-in.
 
-Admins can add or edit dates, location, a displayed signup deadline, a conference overview, and up to 12 HTTPS resource links. Enter each link as `Label | https://example.com`. The deadline is informational; admins close signups from the conference page. Grade and Model UN experience use selection fields for new submissions. Applications are grouped by delegate in expandable rows.
+Admins can add or edit dates, location, a displayed signup deadline, a conference overview, and up to 12 HTTPS resource links. Use separate label and HTTPS URL fields for each link. The deadline is informational; admins close signups from the conference page. Graduation year determines grade, and Model UN experience uses a selection field for new submissions. Applications are grouped by delegate in expandable rows.
 
 ## Delegate contact and roster
 
@@ -30,3 +30,5 @@ After changing `firestore.rules`, publish its updated contents in Firebase Conso
 
 Admins can use **Add to conference** to give a registered member access to the preference form without choosing a committee yet. Use **Assign committee** after reviewing preferences. Assigning a committee also adds the member to that conference. Members see officer assigned conferences under **My conferences** and can browse open signups under **Explore conferences**. Only members assigned to a conference can submit committee preferences. The portal hides the form until an officer assigns the member, and Firestore rules enforce the same requirement. Publish the updated `firestore.rules` in Firebase Console before using this feature; the new `conferenceMembers` collection is readable only by the assigned member and admins.
 
+
+Admins can edit committee placements directly and maintain member names, graduation years, phone numbers, and contact preferences in **All delegates**. Email addresses are shown from sign in accounts.

@@ -1,19 +1,5 @@
 import { escapeHtml as esc } from './firebase.js';
 
-export function parseResources(text) {
-  const lines = String(text || '').split('\n').map(line => line.trim()).filter(Boolean);
-  if (lines.length > 12) throw Error('Add no more than 12 resource links.');
-  return lines.map((line, index) => {
-    const divider = line.indexOf('|');
-    if (divider < 1) throw Error(`Resource ${index + 1}: use Label | https://example.com`);
-    const label = line.slice(0, divider).trim(), raw = line.slice(divider + 1).trim();
-    let url;
-    try { url = new URL(raw); } catch { throw Error(`Resource ${index + 1}: enter a valid URL.`); }
-    if (!label || label.length > 80 || url.protocol !== 'https:') throw Error(`Resource ${index + 1}: use a short label and an HTTPS link.`);
-    return { label, url: url.href };
-  });
-}
-export function resourcesText(resources) { return (resources || []).map(item => `${item.label} | ${item.url}`).join('\n'); }
 export function renderResources(resources) {
   const safe = (resources || []).filter(item => {
     try { return new URL(item.url).protocol === 'https:'; } catch { return false; }

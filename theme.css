@@ -45,3 +45,6 @@ section[style*="padding: 64px"], section[style*="padding: 72px"] { padding-top: 
 footer { padding-top: 52px; }
 .portal-body .portal-shell { padding-top: 86px; }
 @media (max-width: 650px) { .portal-body .portal-shell { padding-top: 76px; } }
+
+/* Tactile pressed state for clickable actions. */
+.btn:active, .nav-cta:active, .email-pill:active, .portal-body .primary-button:active, .portal-body .outline-button:active, .portal-body .google-button:active, .portal-body .conference-filters button:active { transform: translateY(2px); box-shadow: inset 0 2px 5px rgba(14,39,64,.28) !important; filter: brightness(.93); }
