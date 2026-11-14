@@ -223,3 +223,10 @@
 .portal-body .resource-row, .portal-body .question-row { min-width:0; }
 .portal-body .resource-row > label, .portal-body .question-row > label { min-width:0; }
 @media(max-width:650px) { .portal-body .resource-row, .portal-body .question-row { grid-template-columns:1fr; } }
+
+.portal-body #admin-conference-list.conference-grid { border:0; background:transparent; }
+.portal-body .conference-directory-table { min-width:760px; }
+.portal-body .conference-directory-table td:first-child { min-width:220px; }
+.portal-body .conference-directory-table td small { display:block; color:var(--portal-muted); max-width:280px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.portal-body .conference-directory-table tbody tr:nth-child(even) { background:#f9fbfd; }
+.portal-body .conference-directory-table tbody tr:hover { background:#eef5fb; }

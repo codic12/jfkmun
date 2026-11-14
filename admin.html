@@ -11,9 +11,9 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css?v=20261113" />
-        <link rel="stylesheet" href="portal.css?v=20261113-editor" />
+        <link rel="stylesheet" href="portal.css?v=20261113-table" />
         <link rel="icon" href="logo.svg" type="image/svg+xml" />
-        <link rel="stylesheet" href="theme.css?v=20261113-7" />
+        <link rel="stylesheet" href="theme.css?v=20261113-10" />
     </head>
     <body class="portal-body">
         <nav id="navbar">
@@ -60,9 +60,17 @@
                         <div>
                             <h1>Conference management</h1>
                         </div>
-                        <div class="admin-top-actions"><button id="show-master-roster" class="outline-button" type="button">All delegates</button><button id="show-create" class="primary-button">
-                            + New conference
-                        </button></div>
+                        <div class="admin-top-actions">
+                            <button
+                                id="show-master-roster"
+                                class="outline-button"
+                                type="button"
+                            >
+                                All delegates</button
+                            ><button id="show-create" class="primary-button">
+                                + New conference
+                            </button>
+                        </div>
                     </div>
                     <div class="section-heading">
                         <div><h2>Conferences</h2></div>
@@ -118,18 +126,57 @@
                             <label
                                 >Signup deadline
                                 <span class="field-help"
-                                    >Shown to members. Close the signup from its
-                                    conference page when the deadline
-                                    passes.</span
-                                ><input name="deadline" type="date" /></label
+                                    >
+                                <input name="deadline" type="date" /></label
                             ><label
                                 >Overview
                                 <textarea
                                     name="description"
                                     maxlength="1000"
                                     placeholder="What should delegates know about this conference?"
-                                ></textarea></label
-                            ><div class="form-list-section"><div class="form-list-heading"><strong>Resource links</strong><span class="field-help">Waivers, logistics, and conference websites</span></div><div class="resource-fields" data-resource-fields></div><button class="outline-button" type="button" data-add-resource>Add link</button></div><div class="form-list-section"><div class="form-list-heading"><strong>Signup questions</strong><span class="field-help">Members answer these when submitting preferences.</span></div><div class="question-fields" data-question-fields></div><button class="outline-button" type="button" data-add-question>Add question</button></div><button type="submit" class="primary-button">
+                                ></textarea>
+                            </label>
+                            <div class="form-list-section">
+                                <div class="form-list-heading">
+                                    <strong>Resource links</strong
+                                    ><span class="field-help"
+                                        >Waivers, logistics, and conference
+                                        websites</span
+                                    >
+                                </div>
+                                <div
+                                    class="resource-fields"
+                                    data-resource-fields
+                                ></div>
+                                <button
+                                    class="outline-button"
+                                    type="button"
+                                    data-add-resource
+                                >
+                                    Add link
+                                </button>
+                            </div>
+                            <div class="form-list-section">
+                                <div class="form-list-heading">
+                                    <strong>Signup questions</strong
+                                    ><span class="field-help"
+                                        >Members answer these when submitting
+                                        preferences.</span
+                                    >
+                                </div>
+                                <div
+                                    class="question-fields"
+                                    data-question-fields
+                                ></div>
+                                <button
+                                    class="outline-button"
+                                    type="button"
+                                    data-add-question
+                                >
+                                    Add question
+                                </button>
+                            </div>
+                            <button type="submit" class="primary-button">
                                 Publish conference
                             </button>
                         </form>
@@ -141,7 +188,47 @@
                     </button>
                     <div id="admin-conference-detail"></div>
                 </div>
-                <div id="master-roster-view" hidden><button id="master-roster-back" class="back-button" type="button">← Conferences</button><div class="page-lead"><div><h1>All delegates</h1><p>Edit member details across every conference. Email addresses come from sign in accounts.</p></div></div><label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Search delegates</span><input id="master-search" type="search" placeholder="Search delegates" autocomplete="off"></label><div class="master-roster-wrap"><table class="master-roster"><thead><tr><th>Delegate</th><th>Email</th><th>Graduation year</th><th>Grade</th><th>Phone</th><th>Contact method</th><th>Conferences</th><th></th></tr></thead><tbody id="master-roster-body"></tbody></table></div></div><div id="roster-view" hidden>
+                <div id="master-roster-view" hidden>
+                    <button
+                        id="master-roster-back"
+                        class="back-button"
+                        type="button"
+                    >
+                        ← Conferences
+                    </button>
+                    <div class="page-lead">
+                        <div>
+                            <h1>All delegates panel</h1>
+                        </div>
+                    </div>
+                    <label class="search-field"
+                        ><span class="search-icon" aria-hidden="true">⌕</span
+                        ><span class="sr-only">Search delegates</span
+                        ><input
+                            id="master-search"
+                            type="search"
+                            placeholder="Search delegates"
+                            autocomplete="off"
+                    /></label>
+                    <div class="master-roster-wrap">
+                        <table class="master-roster">
+                            <thead>
+                                <tr>
+                                    <th>Delegate</th>
+                                    <th>Email</th>
+                                    <th>Graduation year</th>
+                                    <th>Grade</th>
+                                    <th>Phone</th>
+                                    <th>Contact method</th>
+                                    <th>Conferences</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="master-roster-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="roster-view" hidden>
                     <div class="roster-controls">
                         <button id="roster-back" class="back-button">
                             ← Conference
@@ -166,6 +253,6 @@
                 </div>
             </div>
         </main>
-        <script type="module" src="admin.js?v=20261113-7"></script>
+        <script type="module" src="admin.js?v=20261113-11"></script>
     </body>
 </html>
