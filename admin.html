@@ -1,6 +1,197 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Admin Dashboard | JFK Model UN</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="portal.css?v=20261111-3"><link rel="icon" href="logo.svg" type="image/svg+xml"></head><body class="portal-body"><nav id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="logo.svg" alt="JFK MUN Logo" width="44" height="44"></a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="conferences.html">Conferences</a></li><li><a href="officers.html">Officers</a></li><li><a href="summer-program.html">Summer</a></li><li><a href="signup.html" class="nav-cta">Join</a></li><li><a href="portal.html">Member Portal</a></li><li><a href="admin.html" class="active">Admin dashboard</a></li></ul></div></nav><main class="portal-shell"><div id="notice" class="portal-notice" role="status" hidden></div><div id="admin-panel" hidden><div id="admin-directory"><div class="page-lead"><div><h1>Conference management</h1><p>Publish signups, review preferences, and place delegates.</p></div><button id="show-create" class="primary-button">+ New conference</button></div><div class="summary-grid"><div class="summary-tile"><span>Conferences</span><strong id="admin-conference-count">0</strong><small>Published and closed</small></div><div class="summary-tile"><span>Members</span><strong id="admin-member-count">0</strong><small>Registered accounts</small></div><div class="summary-tile"><span>Applications</span><strong id="admin-submission-count">0</strong><small>Across conferences</small></div></div><div class="section-heading"><div><span class="eyebrow">MANAGE</span><h2>Conferences</h2></div><p>Open a conference to manage its signup and delegates.</p></div><label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Search conferences</span><input id="admin-search" type="search" placeholder="Search conferences" autocomplete="off"></label><div id="admin-conference-list" class="conference-grid"></div></div><div id="create-view" hidden><button id="create-back" class="back-button">← All conferences</button><div class="surface editor-panel"><span class="eyebrow">NEW CONFERENCE</span><h1>Publish a conference</h1><p>Members will see a dedicated page for this conference.</p><form id="new-form" class="form-grid"><label>Conference name <input name="title" required maxlength="120" placeholder="e.g. Stanford MUN 2027"></label><div class="two-col"><label>Dates <input name="dates" maxlength="100" placeholder="e.g. March 14–16, 2027"></label><label>Location <input name="location" maxlength="120" placeholder="e.g. Stanford, CA"></label></div><label>Signup deadline <span class="field-help">Shown to members. Close the signup from its conference page when the deadline passes.</span><input name="deadline" type="date"></label><label>Overview <textarea name="description" maxlength="1000" placeholder="What should delegates know about this conference?"></textarea></label><label>Resource links <span class="field-help">One per line: Label | https://example.com. Add waiver, logistics slides, conference website, and other useful links.</span><textarea name="resources" maxlength="4000" placeholder="Waiver | https://example.com/waiver&#10;Logistics slides | https://example.com/slides"></textarea></label><label>Signup questions <span class="field-help">One question per line. Members answer each question when applying.</span><textarea name="questions" required maxlength="3000">Grade level
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Admin Dashboard | JFK Model UN</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css?v=20261113" />
+        <link rel="stylesheet" href="portal.css?v=20261113-portal" />
+        <link rel="icon" href="logo.svg" type="image/svg+xml" />
+        <link rel="stylesheet" href="theme.css?v=20261113-6" />
+    </head>
+    <body class="portal-body">
+        <nav id="navbar">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo"
+                    ><img
+                        src="logo.svg"
+                        alt="JFK MUN Logo"
+                        width="44"
+                        height="44" /></a
+                ><button
+                    class="nav-toggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                >
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="conferences.html">Conferences</a></li>
+                    <li><a href="officers.html">Officers</a></li>
+                    <li><a href="summer-program.html">Summer</a></li>
+                    <li><a href="signup.html">Contact</a></li>
+                    <li>
+                        <a href="portal.html" class="nav-cta">Member Portal</a>
+                    </li>
+                    <li id="admin-sign-out-item" hidden>
+                        <button
+                            id="admin-sign-out"
+                            class="nav-action"
+                            type="button"
+                        >
+                            Sign out
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="portal-shell">
+            <div id="notice" class="portal-notice" role="status" hidden></div>
+            <div id="admin-panel" hidden>
+                <div id="admin-directory">
+                    <div class="page-lead">
+                        <div>
+                            <h1>Conference management</h1>
+                        </div>
+                        <button id="show-create" class="primary-button">
+                            + New conference
+                        </button>
+                    </div>
+                    <div class="section-heading">
+                        <div><h2>Conferences</h2></div>
+                    </div>
+                    <label class="search-field"
+                        ><span class="search-icon" aria-hidden="true">⌕</span
+                        ><span class="sr-only">Search conferences</span
+                        ><input
+                            id="admin-search"
+                            type="search"
+                            placeholder="Search conferences"
+                            autocomplete="off"
+                    /></label>
+                    <div
+                        id="admin-conference-list"
+                        class="conference-grid"
+                    ></div>
+                </div>
+                <div id="create-view" hidden>
+                    <button id="create-back" class="back-button">
+                        ← All conferences
+                    </button>
+                    <div class="surface editor-panel">
+                        <h1>Publish a conference</h1>
+                        <p>
+                            Members will see a dedicated page for this
+                            conference.
+                        </p>
+                        <form id="new-form" class="form-grid">
+                            <label
+                                >Conference name
+                                <input
+                                    name="title"
+                                    required
+                                    maxlength="120"
+                                    placeholder="e.g. Stanford MUN 2027"
+                            /></label>
+                            <div class="two-col">
+                                <label
+                                    >Dates
+                                    <input
+                                        name="dates"
+                                        maxlength="100"
+                                        placeholder="e.g. March 14–16, 2027" /></label
+                                ><label
+                                    >Location
+                                    <input
+                                        name="location"
+                                        maxlength="120"
+                                        placeholder="e.g. Stanford, CA"
+                                /></label>
+                            </div>
+                            <label
+                                >Signup deadline
+                                <span class="field-help"
+                                    >Shown to members. Close the signup from its
+                                    conference page when the deadline
+                                    passes.</span
+                                ><input name="deadline" type="date" /></label
+                            ><label
+                                >Overview
+                                <textarea
+                                    name="description"
+                                    maxlength="1000"
+                                    placeholder="What should delegates know about this conference?"
+                                ></textarea></label
+                            ><label
+                                >Resource links
+                                <span class="field-help"
+                                    >One per line: Label | https://example.com.
+                                    Add waiver, logistics slides, conference
+                                    website, and other useful links.</span
+                                ><textarea
+                                    name="resources"
+                                    maxlength="4000"
+                                    placeholder="Waiver | https://example.com/waiver&#10;Logistics slides | https://example.com/slides"
+                                ></textarea></label
+                            ><label
+                                >Signup questions
+                                <span class="field-help"
+                                    >One question per line. Members answer each
+                                    question when applying.</span
+                                ><textarea
+                                    name="questions"
+                                    required
+                                    maxlength="3000"
+                                >
 Previous Model UN experience
 First committee preference
 Second committee preference
 Country or role preference
-Scheduling or accessibility notes</textarea></label><button type="submit" class="primary-button">Publish conference</button></form></div></div><div id="admin-conference-view" hidden><button id="admin-back" class="back-button">← All conferences</button><div id="admin-conference-detail"></div></div><div id="roster-view" hidden><div class="roster-controls"><button id="roster-back" class="back-button">← Conference</button><div><label><input id="show-roster-contacts" type="checkbox"> Show contact details</label><button id="print-roster" class="outline-button" type="button">Print / save PDF</button></div></div><div id="roster-content" class="roster-sheet"></div></div></div></main><script type="module" src="admin.js?v=20261111-3"></script></body></html>
+Scheduling or accessibility notes</textarea></label
+                            ><button type="submit" class="primary-button">
+                                Publish conference
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div id="admin-conference-view" hidden>
+                    <button id="admin-back" class="back-button">
+                        ← All conferences
+                    </button>
+                    <div id="admin-conference-detail"></div>
+                </div>
+                <div id="roster-view" hidden>
+                    <div class="roster-controls">
+                        <button id="roster-back" class="back-button">
+                            ← Conference
+                        </button>
+                        <div>
+                            <label
+                                ><input
+                                    id="show-roster-contacts"
+                                    type="checkbox"
+                                />
+                                Show contact details</label
+                            ><button
+                                id="print-roster"
+                                class="outline-button"
+                                type="button"
+                            >
+                                Print / save PDF
+                            </button>
+                        </div>
+                    </div>
+                    <div id="roster-content" class="roster-sheet"></div>
+                </div>
+            </div>
+        </main>
+        <script type="module" src="admin.js?v=20261113-3"></script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+/* Light, crisp interface inspired by early Google web apps. */
+:root { --serif-display: "Merriweather", Georgia, serif; --serif-body: "Lato", Arial, sans-serif; --ui-font: "Lato", Arial, sans-serif; }
+body, .nav-links a, .btn, .badge, thead th, tbody td, .footer-col h4, .portal-body button, .portal-body input, .portal-body select, .portal-body textarea { font-family: var(--ui-font); }
+.page-header { background: linear-gradient(#f8fafc,#e9eff5); border-bottom-color:#cbd5e1; }
+.page-header-title { color:#253447; } .page-header-desc { color:#526273; }
+.btn-primary, .nav-cta, .portal-body .primary-button { background:linear-gradient(#4b91df,#2768b2)!important; border:1px solid #1c5798!important; color:#fff!important; border-radius:4px; box-shadow:inset 0 1px #ffffff55,0 1px 2px #173d6140; }
+.btn-primary:hover, .nav-cta:hover, .portal-body .primary-button:hover { background:linear-gradient(#5ba0eb,#3477c2)!important; }
+.btn-outline, .portal-body .outline-button, .portal-body .google-button, .email-pill { background:linear-gradient(#fff,#e8eef4)!important; border:1px solid #a7bdcf!important; color:#245f98!important; border-radius:4px; box-shadow:inset 0 1px #fff,0 1px 2px #173d6126; }
+.btn-outline:hover, .portal-body .outline-button:hover, .portal-body .google-button:hover, .email-pill:hover { background:linear-gradient(#fff,#dcebf8)!important; }
+.card, .program-summary-card, .signup-box { background:#fff; border:1px solid #d9e2eb; border-radius:6px; box-shadow:0 2px 7px #19324b14; backdrop-filter:none; }
+.card:hover { background:#fff; border-color:#b7cde1; box-shadow:0 4px 12px #19324b21; transform:translateY(-2px); }
+.officer-photo { background:#edf2f7; } .officer-name { color:#25384b; } .officer-role { color:#3477b8; }
+.signup-box { max-width:760px; padding:clamp(28px,5vw,48px); }
+.email-pill { text-decoration:none; }
+.portal-body .surface h2 { background:transparent; border-bottom-color:#d4dee8; color:#263b50; }
+.portal-body .auth-card h2 { background:none; border:0; margin:0 0 7px; padding:0; }
+
+/* Profile fields stay in a stable two-column grid. */
+.portal-body .contact-form .two-col { align-items: start; }
+.portal-body .graduation-field { align-content: start; }
+.portal-body .grade-preview { display: block; margin-top: 2px; font-size: .82rem; font-weight: 400; color: #526477; line-height: 1.35; }
+.portal-body .grade-preview strong { color: #284f72; font-weight: 600; }
+@media (max-width: 650px) { .portal-body .contact-form .two-col { grid-template-columns: 1fr; } }
+/* Distinct action treatments: blue navigation, green saves, neutral secondary actions. */
+.portal-body .contact-form .primary-button { background: linear-gradient(#59a974,#338354) !important; border-color: #276a43 !important; }
+.portal-body .contact-form .primary-button:hover { background: linear-gradient(#68b782,#3c9660) !important; }
+.portal-body .outline-button, .btn-outline { background: linear-gradient(#fff,#e8edf2) !important; border-color: #a8b6c4 !important; color: #344b60 !important; }
+.portal-body .outline-button:hover, .btn-outline:hover { background: linear-gradient(#fff,#dfe8f0) !important; color: #243d52 !important; }
+.portal-body .google-button { background: linear-gradient(#fff,#f4f5f6) !important; border-color: #b7c0c9 !important; color: #334155 !important; }
+.portal-body .google-button:hover { background: linear-gradient(#fff,#e9edf1) !important; }
+.email-pill { background: linear-gradient(#fff,#e9f3ec) !important; border-color: #9fc5a9 !important; color: #286443 !important; }
+.email-pill:hover { background: linear-gradient(#fff,#deeee2) !important; }
+
+/* Shared compact frame for public pages and the portal. */
+nav#navbar { height: 56px; }
+.nav-inner, .page-header-inner, .section-wrap, .footer-inner, .footer-bottom { max-width: 1100px; }
+.nav-logo img { width: 38px; height: 38px; }
+.nav-links a { padding: 6px 11px; }
+.nav-cta { padding: 6px 14px !important; }
+.page-header, .hero { margin-top: 56px; }
+.page-header { padding: 42px 0 32px; }
+section { padding-top: 64px; padding-bottom: 64px; }
+section[style*="padding: 64px"], section[style*="padding: 72px"] { padding-top: 48px !important; padding-bottom: 64px !important; }
+#gallery { padding-top: 64px !important; padding-bottom: 64px !important; }
+footer { padding-top: 52px; }
+.portal-body .portal-shell { padding-top: 86px; }
+@media (max-width: 650px) { .portal-body .portal-shell { padding-top: 76px; } }

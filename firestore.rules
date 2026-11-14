@@ -5,9 +5,9 @@ service cloud.firestore {
     function admin() { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
     match /admins/{uid} { allow read: if signedIn() && request.auth.uid == uid; allow write: if false; }
     match /profiles/{uid} {
-      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.keys().hasOnly(['name','email','createdAt','phone','contactPreference']) && request.resource.data.email == request.auth.token.email && (!('phone' in request.resource.data) || (request.resource.data.phone is string && request.resource.data.phone.size() <= 30)) && (!('contactPreference' in request.resource.data) || request.resource.data.contactPreference in ['email','text','either']);
+      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.keys().hasOnly(['name','email','createdAt','phone','contactPreference','graduationYear']) && request.resource.data.email == request.auth.token.email && (!('phone' in request.resource.data) || (request.resource.data.phone is string && request.resource.data.phone.size() <= 30)) && (!('contactPreference' in request.resource.data) || request.resource.data.contactPreference in ['email','text','either']) && (!('graduationYear' in request.resource.data) || (request.resource.data.graduationYear is int && request.resource.data.graduationYear >= 2020 && request.resource.data.graduationYear <= 2100));
       allow read: if admin() || (signedIn() && request.auth.uid == uid);
-      allow update: if admin() || (signedIn() && request.auth.uid == uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['phone','contactPreference']) && request.resource.data.phone is string && request.resource.data.phone.size() <= 30 && request.resource.data.contactPreference in ['email','text','either']);
+      allow update: if admin() || (signedIn() && request.auth.uid == uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['phone','contactPreference','graduationYear']) && request.resource.data.phone is string && request.resource.data.phone.size() <= 30 && request.resource.data.contactPreference in ['email','text','either'] && request.resource.data.graduationYear is int && request.resource.data.graduationYear >= 2020 && request.resource.data.graduationYear <= 2100);
       allow delete: if admin();
     }
     match /forms/{id} {
@@ -16,7 +16,7 @@ service cloud.firestore {
     }
     match /submissions/{id} {
       allow read: if admin() || (signedIn() && resource.data.uid == request.auth.uid);
-      allow create: if signedIn() && id == request.auth.uid + '_' + request.resource.data.formId && request.resource.data.uid == request.auth.uid && request.resource.data.keys().hasOnly(['uid','formId','formTitle','answers','createdAt']) && get(/databases/$(database)/documents/forms/$(request.resource.data.formId)).data.open == true;
+      allow create: if signedIn() && id == request.auth.uid + '_' + request.resource.data.formId && request.resource.data.uid == request.auth.uid && exists(/databases/$(database)/documents/conferenceMembers/$(request.resource.data.formId + '_' + request.auth.uid)) && request.resource.data.keys().hasOnly(['uid','formId','formTitle','answers','createdAt']) && get(/databases/$(database)/documents/forms/$(request.resource.data.formId)).data.open == true;
       allow update, delete: if admin();
     }
     match /conferenceMembers/{id} {

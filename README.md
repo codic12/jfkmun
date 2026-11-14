@@ -28,4 +28,5 @@ After changing `firestore.rules`, publish its updated contents in Firebase Conso
 
 ## Conference membership
 
-Admins can assign a registered member to a conference without choosing a committee yet. Assigning a committee also adds the member to that conference. Members see officer assigned conferences under **My conferences** and can browse open signups under **Explore conferences**. An application alone does not assign the member to the conference. Publish the updated `firestore.rules` in Firebase Console before using this feature; the new `conferenceMembers` collection is readable only by the assigned member and admins.
+Admins can use **Add to conference** to give a registered member access to the preference form without choosing a committee yet. Use **Assign committee** after reviewing preferences. Assigning a committee also adds the member to that conference. Members see officer assigned conferences under **My conferences** and can browse open signups under **Explore conferences**. Only members assigned to a conference can submit committee preferences. The portal hides the form until an officer assigns the member, and Firestore rules enforce the same requirement. Publish the updated `firestore.rules` in Firebase Console before using this feature; the new `conferenceMembers` collection is readable only by the assigned member and admins.
+

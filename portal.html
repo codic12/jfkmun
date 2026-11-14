@@ -1,7 +1,232 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Member Portal | JFK Model UN</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="portal.css?v=20261111-3"><link rel="icon" href="logo.svg" type="image/svg+xml"></head>
-<body class="portal-body"><nav id="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><img src="logo.svg" alt="JFK MUN Logo" width="44" height="44"></a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="conferences.html">Conferences</a></li><li><a href="officers.html">Officers</a></li><li><a href="summer-program.html">Summer</a></li><li><a href="signup.html" class="nav-cta">Join</a></li><li><a href="portal.html" class="active">Member Portal</a></li><li id="admin-nav-item" hidden><a id="admin-link" href="admin.html">Admin dashboard</a></li><li id="sign-out-item" hidden><button id="sign-out" class="nav-action">Sign out</button></li></ul></div></nav>
-<main class="portal-shell"><div id="notice" class="portal-notice" role="status" hidden></div>
-<section id="auth-panel" class="auth-layout" hidden><div class="surface auth-card"><span class="eyebrow">WELCOME</span><h2>Sign in to your portal</h2><p>Use your Google account or email and password.</p><button id="google-sign-in" class="google-button" type="button"><svg width="19" height="19" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.7 1.2 9.2 3.6l6.8-6.8C35.9 2.5 30.5 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.2-3.1-.4-4.6H24v9.1h12.4c-.5 2.9-2.2 5.4-4.7 7.1l7.3 5.7c4.3-4 7.1-9.9 7.1-17.3z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.5-.8-3.1-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.5 0 20.1 0 24s.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.7c-2 1.4-4.9 2.3-8.6 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg> Continue with Google</button><div class="divider"><span>or use email</span></div><form id="auth-form"><label>Full name <input id="full-name" autocomplete="name" maxlength="100" placeholder="For new accounts"></label><label>Email <input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password <input id="password" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></label><div class="auth-actions"><button type="submit" name="action" value="signin" class="primary-button">Sign in</button><button type="submit" name="action" value="register" class="outline-button">Create account</button></div></form><button id="reset-password" class="link-button">Forgot password?</button></div></section>
-<div id="member-panel" hidden><div id="directory-view"><div class="page-lead"><div><h1 id="welcome">Welcome back</h1><p>Everything you need for your next conference.</p></div></div><details class="contact-panel"><summary>My contact information <span>Manage how officers can reach you</span></summary><form id="contact-form" class="contact-form"><p>Your email: <strong id="contact-email"></strong></p><div class="two-col"><label>Phone number <span class="field-help">Optional</span><input id="contact-phone" type="tel" autocomplete="tel" maxlength="30" placeholder="(510) 555-0123"></label><label>Preferred contact method<select id="contact-preference"><option value="email">Email</option><option value="text">Text</option><option value="either">Either</option></select></label></div><button class="primary-button" type="submit">Save contact information</button></form></details><div class="summary-grid"><div class="summary-tile"><span>Conferences</span><strong id="conference-count">0</strong><small>Available to explore</small></div><div class="summary-tile"><span>Applications</span><strong id="submission-count">0</strong><small>Preferences submitted</small></div><div class="summary-tile"><span>Assignments</span><strong id="assignment-count">0</strong><small>Committee placements</small></div></div><div class="section-heading"><div><span class="eyebrow">YOUR OPPORTUNITIES</span><h2>Conferences</h2></div><p>Select a conference to view details and your status.</p></div><div class="conference-filters" role="group" aria-label="Conference view"><button id="filter-mine" type="button" aria-pressed="false">My conferences <span id="mine-count">0</span></button><button id="filter-all" type="button" aria-pressed="true">Explore conferences</button></div><label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Search conferences</span><input id="member-search" type="search" placeholder="Search conferences" autocomplete="off"></label><div id="conference-list" class="conference-grid"></div><section id="unmatched-assignments" class="surface legacy-panel" hidden><h2>Other assignments</h2><div></div></section></div>
-<div id="conference-view" hidden><button id="member-back" class="back-button">← All conferences</button><div id="conference-detail"></div></div></div></main><script type="module" src="portal.js?v=20261111-3"></script></body></html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Member Portal | JFK Model UN</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css?v=20261113" />
+        <link rel="stylesheet" href="portal.css?v=20261113-portal" />
+        <link rel="icon" href="logo.svg" type="image/svg+xml" />
+        <link rel="stylesheet" href="theme.css?v=20261113-6" />
+    </head>
+    <body class="portal-body">
+        <nav id="navbar">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo"
+                    ><img
+                        src="logo.svg"
+                        alt="JFK MUN Logo"
+                        width="44"
+                        height="44" /></a
+                ><button
+                    class="nav-toggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                >
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="conferences.html">Conferences</a></li>
+                    <li><a href="officers.html">Officers</a></li>
+                    <li><a href="summer-program.html">Summer</a></li>
+                    <li><a href="signup.html">Contact</a></li>
+                    <li>
+                        <a href="portal.html" class="nav-cta active">Member Portal</a>
+                    </li>
+
+                    <li id="sign-out-item" hidden>
+                        <button id="sign-out" class="nav-action">
+                            Sign out
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="portal-shell">
+            <div id="notice" class="portal-notice" role="status" hidden></div>
+            <section id="auth-panel" class="auth-layout" hidden>
+                <div class="surface auth-card">
+                    <h2>Sign in to your portal</h2>
+                    <p>Use your Google account or email and password.</p>
+                    <button
+                        id="google-sign-in"
+                        class="google-button"
+                        type="button"
+                    >
+                        <svg
+                            width="19"
+                            height="19"
+                            viewBox="0 0 48 48"
+                            aria-hidden="true"
+                        >
+                            <path
+                                fill="#EA4335"
+                                d="M24 9.5c3.5 0 6.7 1.2 9.2 3.6l6.8-6.8C35.9 2.5 30.5 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"
+                            />
+                            <path
+                                fill="#4285F4"
+                                d="M46.1 24.6c0-1.6-.2-3.1-.4-4.6H24v9.1h12.4c-.5 2.9-2.2 5.4-4.7 7.1l7.3 5.7c4.3-4 7.1-9.9 7.1-17.3z"
+                            />
+                            <path
+                                fill="#FBBC05"
+                                d="M10.5 28.7c-.5-1.5-.8-3.1-.8-4.7s.3-3.2.8-4.7l-7.9-6.1C.9 16.5 0 20.1 0 24s.9 7.5 2.6 10.8l7.9-6.1z"
+                            />
+                            <path
+                                fill="#34A853"
+                                d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.7c-2 1.4-4.9 2.3-8.6 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"
+                            />
+                        </svg>
+                        Continue with Google
+                    </button>
+                    <div class="divider"><span>or use email</span></div>
+                    <form id="auth-form">
+                        <label
+                            >Full name
+                            <input
+                                id="full-name"
+                                autocomplete="name"
+                                maxlength="100"
+                                placeholder="For new accounts" /></label
+                        ><label
+                            >Email
+                            <input
+                                id="email"
+                                type="email"
+                                autocomplete="email"
+                                required
+                                placeholder="you@example.com" /></label
+                        ><label
+                            >Password
+                            <input
+                                id="password"
+                                type="password"
+                                autocomplete="current-password"
+                                minlength="6"
+                                required
+                                placeholder="At least 6 characters"
+                        /></label>
+                        <div class="auth-actions">
+                            <button
+                                type="submit"
+                                name="action"
+                                value="signin"
+                                class="primary-button"
+                            >
+                                Sign in</button
+                            ><button
+                                type="submit"
+                                name="action"
+                                value="register"
+                                class="outline-button"
+                            >
+                                Create account
+                            </button>
+                        </div>
+                    </form>
+                    <button id="reset-password" class="link-button">
+                        Forgot password?
+                    </button>
+                </div>
+            </section>
+            <div id="member-panel" hidden>
+                <div id="directory-view">
+                    <div class="page-lead">
+                        <div>
+                            <h1 id="welcome">Welcome back</h1><a id="admin-nav-item" class="outline-button portal-admin-link" href="admin.html" hidden>Admin dashboard</a>
+                        </div>
+                    </div>
+                    <details class="contact-panel">
+                        <summary>
+                            Change personal delegate information
+                        </summary>
+                        <form id="contact-form" class="contact-form">
+                            <p>
+                                Your email: <strong id="contact-email"></strong>
+                            </p>
+                            <div class="two-col">
+                                <label class="graduation-field">Graduation year <input id="graduation-year" type="number" min="2020" max="2100" step="1" inputmode="numeric" placeholder="2027" required><span class="grade-preview">Current grade: <strong id="current-grade">Add your graduation year</strong></span></label>
+                                <label
+                                    >Phone number
+                                    <span class="field-help">Optional</span
+                                    ><input
+                                        id="contact-phone"
+                                        type="tel"
+                                        autocomplete="tel"
+                                        maxlength="30"
+                                        placeholder="(510) 555-0123" /></label
+                                ><label
+                                    >Preferred contact method<select
+                                        id="contact-preference"
+                                    >
+                                        <option value="email">Email</option>
+                                        <option value="text">Text</option>
+                                        <option value="either">Either</option>
+                                    </select></label
+                                >
+                            </div>
+                            <button class="primary-button" type="submit">
+                                Save my information
+                            </button>
+                        </form>
+                    </details>
+                    <div class="section-heading">
+                        <div><h2>Conferences</h2></div>
+
+                    </div>
+                    <div
+                        class="conference-filters"
+                        role="group"
+                        aria-label="Conference view"
+                    >
+                        <button
+                            id="filter-mine"
+                            type="button"
+                            aria-pressed="false"
+                        >
+                            My conferences
+                            <span id="mine-count">0</span></button
+                        ><button
+                            id="filter-all"
+                            type="button"
+                            aria-pressed="true"
+                        >
+                            All conferences
+                        </button>
+                    </div>
+                    <label class="search-field"
+                        ><span class="search-icon" aria-hidden="true">⌕</span
+                        ><span class="sr-only">Search conferences</span
+                        ><input
+                            id="member-search"
+                            type="search"
+                            placeholder="Search conferences"
+                            autocomplete="off"
+                    /></label>
+                    <div id="conference-list" class="conference-grid"></div>
+                    <section
+                        id="unmatched-assignments"
+                        class="surface legacy-panel"
+                        hidden
+                    >
+                        <h2>Other assignments</h2>
+                        <div></div>
+                    </section>
+                </div>
+                <div id="conference-view" hidden>
+                    <button id="member-back" class="back-button">
+                        ← All conferences
+                    </button>
+                    <div id="conference-detail"></div>
+                </div>
+            </div>
+        </main>
+        <script type="module" src="portal.js?v=20261113-3"></script>
+    </body>
+</html>
