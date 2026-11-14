@@ -19,6 +19,10 @@ service cloud.firestore {
       allow create: if signedIn() && id == request.auth.uid + '_' + request.resource.data.formId && request.resource.data.uid == request.auth.uid && request.resource.data.keys().hasOnly(['uid','formId','formTitle','answers','createdAt']) && get(/databases/$(database)/documents/forms/$(request.resource.data.formId)).data.open == true;
       allow update, delete: if admin();
     }
+    match /conferenceMembers/{id} {
+      allow read: if admin() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow create, update, delete: if admin();
+    }
     match /assignments/{id} {
       allow read: if admin() || (signedIn() && resource.data.uid == request.auth.uid);
       allow create, update, delete: if admin();

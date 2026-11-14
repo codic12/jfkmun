@@ -25,3 +25,7 @@ Admins can add or edit dates, location, a displayed signup deadline, a conferenc
 Delegates can add an optional phone number and choose email, text, or either as their contact preference in the member portal. Admins can open a conference's **Compact roster** to see a screenshot-friendly table of applicants and assigned delegates. Contact columns are hidden by default and can be included with the checkbox; **Print / save PDF** uses a landscape layout.
 
 After changing `firestore.rules`, publish its updated contents in Firebase Console > Firestore > Rules. Until those rules are published, delegates cannot save contact information.
+
+## Conference membership
+
+Admins can assign a registered member to a conference without choosing a committee yet. Assigning a committee also adds the member to that conference. Members see officer assigned conferences under **My conferences** and can browse open signups under **Explore conferences**. An application alone does not assign the member to the conference. Publish the updated `firestore.rules` in Firebase Console before using this feature; the new `conferenceMembers` collection is readable only by the assigned member and admins.
